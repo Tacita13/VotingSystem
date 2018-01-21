@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> {{meeting_title}}</title>
+</head>
+<body>
+    <h1> {{meeting_title}}</h1>
+    <div>
+        {% if current_user.is_authenticated %}
+            Welcome: {{ current_user.email }}
+        {% endif %}
+        <a href="/logout" > Logout</a>
+    </div>
+    <a href="/home" > Home</a>
+    <table style="width:50%;text-align:left">
+        <tr>
+            <th>Question</th>
+            <th>Status</th>
+            <th>Link</th>
+            <th>Results</th>
+
+        </tr>
+        {% for question in questions%}
+				<!--display database content-->
+            <tr>
+                <td>{{question.get('title')}}</td>
+                <td>{{question.get('status')}}</td>
+                <td>
+                    <form action="\voting" method="post">
+                        <button class ="button" name="question_id" type="submit" value={{question.get('question_id')}}>Vote</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="\results" method="post">
+                        <button class ="button" name="question_id" type="submit" value={{question.get('question_id')}}>Results</button>
+                    </form>
+                </td>
+            </tr>
+				<!--END display database content-->
+        {% endfor %}
+
+    </table>
+</body>
+</html>

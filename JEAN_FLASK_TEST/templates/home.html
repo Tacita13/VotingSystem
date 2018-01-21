@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Account</title>
+</head>
+<body>
+    <h1>Account</h1>
+    <div>
+        {% if current_user.is_authenticated %}
+            Welcome: {{ current_user.email }}
+        {% endif %}
+        <a href="/logout" > Logout</a>
+    </div>
+
+    <table style="width:50%;text-align:left">
+        <tr>
+            <th>Meeting</th>
+            <th>Date</th>
+            <th>Link</th>
+        </tr>
+        {% for meeting in meetings%}
+				<!--display database content-->
+            <tr>
+                <td>{{meeting.get('title')}}</td>
+                <td>{{meeting.get('date')}}</td>
+                <td>
+                    <form action="\meeting" method="post">
+                        <button class ="button" name="meeting_id" type="submit" value={{meeting.get('meeting_id')}}>Meeting</button>
+                    </form>
+                </td>
+            </tr>
+				<!--END display database content-->
+        {% endfor %}
+
+    </table>
+
+</body>
+</html>
