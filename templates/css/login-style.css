@@ -1,9 +1,20 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
+
+h1{
+  text-align: center;
+  color: red;
+}
+
 .login-page {
     margin: auto;
     padding: 8% 0 0;
     width: 360px;
+}
+.main-page {
+  margin: auto;
+  padding: 9% 0 0;
+  width: 360px;
 }
 
 
@@ -64,6 +75,10 @@
 
 .form .register-form {
     display: none;
+}
+
+.form .change {
+    text-align: left;
 }
 
 .container {
