@@ -29,6 +29,20 @@ h1{
     z-index: 1;
 }
 
+.main{
+    background: #FFFFFF;
+    border: 2px solid red;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    margin: 0 auto 30px;
+    max-width: 800px;
+    max-height: 800px;
+    font: Times;
+    font-size: 22px;
+    padding: 45px;
+    position: relative;
+    text-align: left;
+    z-index: 1;
+}
 
 .form input {
     background: #f2f2f2;
@@ -43,7 +57,7 @@ h1{
 }
 
 
-.form button {
+button {
     background: #F41111;
     border: 0;
     color: #FFFFFF;
@@ -58,7 +72,7 @@ h1{
     -webkit-transition: all 0.3 ease;
 }
 
-.form button:hover,.form button:active,.form button:focus {
+button:hover,.form button:active,.form button:focus {
     background: #F41111;
 }
 
@@ -77,9 +91,6 @@ h1{
     display: none;
 }
 
-.form .change {
-    text-align: left;
-}
 
 .container {
     margin: 0 auto;
