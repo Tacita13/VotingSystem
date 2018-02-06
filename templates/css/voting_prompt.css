@@ -61,3 +61,12 @@ p {
     margin-top: 1em;
     text-align: left;
 }
+
+body {
+    background-image: url("../img/upr_gallo_gris.png");
+    background-position: top;
+    background-repeat: no-repeat;
+    font-family: "Roboto", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
