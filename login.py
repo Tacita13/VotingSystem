@@ -9,8 +9,8 @@ PH = PasswordHelper()
 DB = DBHelper()
 
 
-def loginPage():
-    return render_template("html/login.html")
+def loginPage(error=""):
+    return render_template("html/login.html" , error=error)
 
 def register_page():
     return render_template("register.html")
@@ -42,8 +42,8 @@ def login():
         user = User(email)
         login_user(user)
         return redirect(url_for('home'))
-
-    return index()
+    error = "Invalid User"
+    return loginPage(error=error)
 
 if __name__ == '__main__':
     app = Flask(__name__)

@@ -79,9 +79,3 @@ class MockDBHelper:
             if voting.get('question_id') == question_id and voting.get('user_id') == user_id:
                 return True
         return False
-
-
-if __name__ == '__main__':
-    DB = MockDBHelper()
-    print DB.get_questions(1)
-    print DB.get_meeting(1)
