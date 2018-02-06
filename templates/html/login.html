@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>2Fast4U Voting System</title>
+
+<center>
+  <h1 style = "color: #F41111"><sup>2Fast4U Voting System</sup></h1>
+</center>
+      <link rel="stylesheet" href="{{url_for('static', filename='css/login-style.css') }}">
+
+
+</head>
+
+
+
+  <div class="login-page">
+  <div class="form">
+    <form class="login-form" action="/login" method="post">
+      <input type="text" name="username" placeholder="username"/>
+      <input type="password" name="password" placeholder="password"/>
+      <button>login</button>
+      <p class="message">Not registered? <a href="#">Create an account</a></p>
+    </form>
+  </div>
+</div>
+  <script src="{{url_for('static', filename='js/jquery.min.js') }}"></script>
+
+    <script  src="{{url_for('static', filename='js/login-js.js') }}"></script>
+
+
+</html>
