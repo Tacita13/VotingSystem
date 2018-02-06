@@ -11,15 +11,12 @@ h1{
     padding: 8% 0 0;
     width: 360px;
 }
-<<<<<<< HEAD
-=======
+
 .main-page {
   margin: auto;
   padding: 9% 0 0;
   width: 360px;
 }
-
->>>>>>> 8a11562379088ac748b8a201d33553a324631c43
 
 .form {
     background: #FFFFFF;
@@ -32,8 +29,6 @@ h1{
     z-index: 1;
 }
 
-<<<<<<< HEAD
-=======
 .main{
     background: #FFFFFF;
     border: 2px solid red;
@@ -49,7 +44,6 @@ h1{
     z-index: 1;
 }
 
->>>>>>> 8a11562379088ac748b8a201d33553a324631c43
 .form input {
     background: #f2f2f2;
     border: 0;
