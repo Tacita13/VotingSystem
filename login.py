@@ -10,10 +10,12 @@ DB = DBHelper()
 
 
 def loginPage(error=""):
-    return render_template("html/login.html" , error=error)
+    return render_template("html/login.html", error=error)
+
 
 def register_page():
     return render_template("register.html")
+
 
 # Stores user info in DB and returns to index.
 def register():
@@ -34,16 +36,25 @@ def logout():
     logout_user()
     return redirect(url_for("loginPage"))
 
+
 def login():
     email = request.form.get("username")
     password = request.form.get("password")
-    stored_user = DB.get_user(email)
-    if stored_user and PH.validate_password(password, stored_user['salt'], stored_user['hashed']):
+    if validateLogin(email, password):
         user = User(email)
         login_user(user)
         return redirect(url_for('home'))
     error = "Invalid User"
     return loginPage(error=error)
+
+
+def validateLogin(email, password):
+    stored_user = DB.get_user(email)
+    if stored_user and PH.validate_password(password, stored_user['salt'], stored_user['hashed']):
+        return True
+    else:
+        return False
+
 
 if __name__ == '__main__':
     app = Flask(__name__)
