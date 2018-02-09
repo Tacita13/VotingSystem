@@ -6,6 +6,11 @@ h1{
   color: red;
 }
 
+h2{
+  text-align: center;
+  color: #898989;
+}
+
 .login-page {
     margin: auto;
     padding: 8% 0 0;
