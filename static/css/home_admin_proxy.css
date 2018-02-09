@@ -28,6 +28,10 @@ body {
     background-size: 100% ;
 }
 
+#questions {
+    text-align: center ;
+    display: block ;
+}
 /* The Modal (background) */
 .modal {
     display: none ; /* Hidden by default */
@@ -50,7 +54,7 @@ body {
     margin: auto ;
     padding: 0 ;
     border: 1px solid #888 ;
-    width: 80% ;
+    width: 25% ;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19) ;
     -webkit-animation-name: animatetop ;
     -webkit-animation-duration: 0.4s ;
@@ -85,12 +89,15 @@ body {
 }
 
 .modal-header {
+    text-align: center;
     padding: 2px 16px ;
     background-color: red ;
     color: white ;
 }
 
-.modal-body {padding: 2px 16px ; color: black ;}
+.modal-body {
+    padding: 2px 16px ; 
+    color: black ; }
 
 .modal-footer {
     padding: 2px 16px ;
