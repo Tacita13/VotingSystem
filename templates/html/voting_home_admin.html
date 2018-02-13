@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta name = "viewport" content = "width = device-width, initial-scale = 1">
+
+  <title> 2Fast4U Voting </title>
+
+  <link href = "../../static/css/voting_home_admin.css" rel = "stylesheet"  type = "text/css"> 
+</head>
+
+<body>
+
+  <header> 2Fast4U Voting </header>
+
+  <h2> Animated Modal with Header and Footer </h2>
+
+  <!-- Trigger/Open The Modal -->
+
+  <div id = "questions">
+    <h2> Current Question: </h2>
+    <button id = "current_question"> Se va a cambiar Moodle por Blackboard? </button>
+    <a href = "edit_question_proxy"> Edit </a>
+
+    <h2> <br> Past Questions: </h2>
+    <button class = "past_question" id = "past_question1"> Banos Unisex? </button> <br> <br>
+    <button class = "past_question"> Huelga o no huelga? </button> <br> <br>
+  </div>
+
+  <!-- The Modal -->
+  <div id = "currentModal" class = "modal">
+
+    <!-- Modal content -->
+    <div class = "modal-content">
+
+      <div class = "modal-header">
+        <span class = "close"> &times </span>
+        <h2> Voting Prompt </h2>
+      </div>
+
+      <div class = "modal-body">
+        <p id = "question_name"> </p>
+        <p id = "question_type"> </p>
+        <button id = "Results"> Results </button>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+   <p> Alex </p>
+  </footer>
+
+    <script src = "../../static/js/voting_home_admin.js"> </script>
+</body>
+  
+</html>
