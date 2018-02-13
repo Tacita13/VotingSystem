@@ -9,8 +9,8 @@ def validateRegister(username, name, email, password):
     user = {'user_id': 2, 'username': username, 'name': name,
              'last_name': 'B', 'user_type': 'Student', 'password': PH.get_hash(password),
              'email': email, 'student_number': '801-15-9203', 'date_created': '2018-10-28 12:00:10'}
-    set_user(user)
-    return True
+
+    return set_user(user)
 
 
 # Stores user info in DB and returns to index.

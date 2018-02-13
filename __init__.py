@@ -13,6 +13,7 @@ app = Flask(__name__)
 login_manager = LoginManager(app)
 app.secret_key = 'svdVhiUiLWW8X/GRkjxpQbD6F5uxHN4YS307PTeShVJc4E72GfcrtnOeUxlRRKRPSJQDIumkx6B21CUxXTd7LGloQvj0/LSyuub'
 
+#
 app.add_url_rule("/", "index", index, methods=['GET', 'POST'])
 app.add_url_rule("/loginPage", "loginPage", loginPage, methods=['GET', 'POST'])
 app.add_url_rule("/login", "login", login, methods=['GET', 'POST'])
