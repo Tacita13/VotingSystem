@@ -27,7 +27,8 @@ def login():
 
 
 def validateLogin(username, password):
-    user = get_user(username)
+    users = get_user(username)
+    user = users[0]
     answer = False
     if user and PH.validate_password(password, user['password'].encode('ascii', 'ignore')):
         answer = True

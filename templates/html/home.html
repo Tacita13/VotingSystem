@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta name = "viewport" content = "width = device-width, initial-scale = 1">
     <title> {{meeting_title}}</title>
+    <link href = "{{url_for('static', filename='css/home_proxy.css') }}" rel = "stylesheet"  type = "text/css">
 </head>
 <body>
     <h1> {{meeting_title}}</h1>
@@ -13,29 +14,19 @@
         <a href="/logout" > Logout</a>
     </div>
     <table style="width:50%;text-align:left">
-        <tr>
-            <th>Question</th>
-            <th>Link</th>
-
-        </tr>
+        <h2>Vote</h2>
 				<!--display question for voting-->
-            <tr>
-                <td>{{current_question.get('title')}}</td>
-                <td>
-                    <form action="\voting" method="post">
-                        <button class ="button" name="question_id" type="submit" value={{current_question.get('question_id')}}>Vote</button>
-                    </form>
-                </td>
-            </tr>
+        <form action="\voting" method="post">
+            <button class ="myBtn" name="question_id" type="submit" value={{current_question.get('question_id')}}>{{current_question.get('title')}}</button>
+        </form>
 
-
+        <h2>Results</h2>
         {% for question in questions%}
 				<!--display question already voted on-->
             <tr>
-                <td>{{question.get('title')}}</td>
                 <td>
                     <form action="\results" method="post">
-                        <button class ="button" name="question_id" type="submit" value={{question.get('question_id')}}>Results</button>
+                        <button class = "past_questions" name="question_id" type="submit" value={{question.get('question_id')}}>{{question.get('title')}}</button>
                     </form>
                 </td>
             </tr>

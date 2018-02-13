@@ -1,11 +1,7 @@
-import mysql.connector
-
-cnx = mysql.connector.connect(user='root', password='root',
-                              host='localhost', port='3306', database='upr-2fast4u-voting')
-cursor = cnx.cursor(dictionary=True)
+from dbhandler import set_question, set_userTable, set_user, get_user
 
 # SQL commands
-drop_table = "drop table if exists User_Confirmation;"
+drop_table = "drop table if exists User;"
            #"drop table if exists User_Confirmation; " \
            # "drop table if exists Voting;" \
             #"drop table if exists Results;" \
@@ -83,30 +79,8 @@ createVoting = "CREATE TABLE `Voting` (" \
                  "`voting_choice` varchar(9) NOT NULL" \
                  ") ENGINE=InnoDB DEFAULT CHARSET=latin1;"
 
-insert_table = "INSERT INTO `User` VALUES ('512f0f02-0', 'TheDoctor', 'NoOne', 'Knows', 'Staff', 'SaraJane', 'testsubject1@gmail.com', '801-44-7821', '2018-01-28 12:00:10')"
+insert_table = "INSERT INTO `User` (`user_id`, `username`, `name`, `last_name`, `user_type`, `password`, `email`, `student_number`, `date_created`) VALUES ('512f0f02-0', 'TheDoctor', 'NoOne', 'Knows', 'Staff', 'SaraJane', 'testsubject1@gmail.com', '801-44-7821', '2018-01-28 12:00:10')"
 getUser = 'SELECT * FROM User WHERE username="TheDoctor"'
+insert_user = "INSERT INTO `User` (`user_id`, `username`, `name`, `last_name`, `user_type`, `password`, `email`, `student_number`, `date_created`) VALUES ('512f0f02-0', 'TheDoctor', 'NoOne', 'Knows', 'Staff', 'SaraJane', 'testsubject1@gmail.com', '801-44-7821', '2018-01-28 12:00:10')"
 
-try:
-    cursor.execute(drop_table)
-except mysql.connector.Error as err:
-    print("Failed to drop Table: {}".format(err))
-    exit(1)
 
-try:
-   print cursor.execute(createConfirmation)
-except mysql.connector.Error as err:
-    print("Failed creating Table: {}".format(err))
-    exit(1)
-
-"""
-try:
-    cursor.execute(insert_table)
-
-except mysql.connector.Error as err:
-    print("Failed inserting Table: {}".format(err))
-    exit(1)
-
-"""
-cnx.commit()  # Very important. Without commit() the data will not be stored in the database.
-cursor.close()
-cnx.close()

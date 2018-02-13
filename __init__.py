@@ -25,7 +25,8 @@ app.add_url_rule("/register", "register", register, methods=['GET', 'POST'])
 
 @login_manager.user_loader
 def load_user(user_id):
-    user = get_user(user_id)
+    users = get_user(user_id)
+    user = users[0]
     answer = None
     if user['username'].encode('ascii', 'ignore'):
          answer = User(user_id)
