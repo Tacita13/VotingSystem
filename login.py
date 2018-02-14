@@ -28,10 +28,11 @@ def login():
 
 def validateLogin(username, password):
     users = get_user(username)
-    user = users[0]
     answer = False
-    if user and PH.validate_password(password, user['password'].encode('ascii', 'ignore')):
-        answer = True
+    if users:
+        user = users.pop()
+        if user and PH.validate_password(password, user['password'].encode('ascii', 'ignore')):
+            answer = True
     return answer
 
 if __name__ == '__main__':
