@@ -17,7 +17,7 @@
         <h2>Vote</h2>
 				<!--display question for voting-->
         <form action="\voting" method="post">
-            <button class ="myBtn" name="question_id" type="submit" value={{current_question.get('question_id')}}>{{current_question.get('title')}}</button>
+            <button class ="myBtn" name="question_id" type="submit" value={{current_question.get('question_title')}}>{{current_question.get('question_title')}}</button>
         </form>
 
         <h2>Results</h2>
@@ -26,7 +26,7 @@
             <tr>
                 <td>
                     <form action="\results" method="post">
-                        <button class = "past_questions" name="question_id" type="submit" value={{question.get('question_id')}}>{{question.get('title')}}</button>
+                        <button class = "past_questions" name="question_id" type="submit" value={{question.get('question_title')}}>{{question.get('question_title')}}</button>
                     </form>
                 </td>
             </tr>

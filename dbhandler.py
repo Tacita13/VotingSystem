@@ -70,7 +70,7 @@ class DBHandler:
 
     def getCompletedQuestions(self, group_name):
         status = "Completed"
-        query = "SELECT * FROM Question WHERE WHERE voting_status='%s' AND group_name='%s'" % (status, group_name)
+        query = "SELECT * FROM Question WHERE voting_status='%s' AND group_name='%s'" % (status, group_name)
         return self.executeGetQuery(query)
 
     def setResult(self,result):
@@ -201,5 +201,15 @@ def get_user_idx():
     output = []
     for i in id:
         output.append(i)
+    DB.disconnect_get()
+    return output
+
+def get_in_progress_question(group_name):
+    DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')
+    DB.connect()
+    quesiton = DB.getInProgressQuestion(group_name)
+    output = None
+    for i in quesiton:
+        output = i
     DB.disconnect_get()
     return output
