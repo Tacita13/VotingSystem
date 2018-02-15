@@ -6,7 +6,8 @@ from index import index
 from login import login, loginPage, logout
 from register import register
 from home import home
-#from voting import voting
+from home_admin import home_admin
+from voting import voting
 #from results import results
 
 app = Flask(__name__)
@@ -19,9 +20,10 @@ app.add_url_rule("/loginPage", "loginPage", loginPage, methods=['GET', 'POST'])
 app.add_url_rule("/login", "login", login, methods=['GET', 'POST'])
 app.add_url_rule("/logout", "logout", logout, methods=['GET', 'POST'])
 app.add_url_rule("/home", "home", home, methods=['GET', 'POST'])
+app.add_url_rule("/home_admin", "home_admin", home_admin, methods=['GET', 'POST'])
 #app.add_url_rule("/register_page", "register_page", register_page, methods=['GET', 'POST'])
 app.add_url_rule("/register", "register", register, methods=['GET', 'POST'])
-#app.add_url_rule("/voting", "voting", voting, methods=['GET', 'POST'])
+app.add_url_rule("/voting", "voting", voting, methods=['GET', 'POST'])
 #app.add_url_rule("/results", "results", results, methods=['GET', 'POST'])
 
 @login_manager.user_loader
@@ -34,4 +36,4 @@ def load_user(user_id):
     return answer
 
 if __name__ == "__main__":
-    app.run()
+    app.run(port=5000, debug=True)

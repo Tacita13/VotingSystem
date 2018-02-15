@@ -21,6 +21,12 @@ class DBHandler:
     def getUser(self,username, password=""):
         query = 'SELECT * FROM User WHERE username="%s"' % username
         return self.executeGetQuery(query)
+    def getUserType(self,username, password=""):
+        query = 'SELECT user_type FROM User WHERE username="%s"' % username
+        return self.executeGetQuery(query)
+    def get_user_id(self):
+        query = 'SELECT user_id FROM User'
+        return self.executeGetQuery(query)
 
     def setUser(self,user):
         query ="INSERT INTO `User` VALUES " \
@@ -134,6 +140,17 @@ def get_user(username, user='root', password='root', host='localhost', database=
             output.append(i)
     DB.disconnect_get()
     return output
+def get_user_type(username, user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306'):
+    DB = DBHandler(user=user, password=password, host=host, database=database, port= port)
+    DB.connect()
+    user = DB.getUserType(username)
+    output = []
+    if user:
+        for i in user:
+            output.append(i)
+    DB.disconnect_get()
+    return output
+
 
 def set_user(user):
     DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')
@@ -173,6 +190,16 @@ def get_CompletedQuestion(group_name):
     user = DB.getCompletedQuestions(group_name)
     output = []
     for i in user:
+        output.append(i)
+    DB.disconnect_get()
+    return output
+
+def get_user_idx():
+    DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')
+    DB.connect()
+    id = DB.get_user_id()
+    output = []
+    for i in id:
         output.append(i)
     DB.disconnect_get()
     return output

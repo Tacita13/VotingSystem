@@ -1,12 +1,23 @@
 from flask import Flask, render_template, request, redirect, url_for
 from passwordhelper import PasswordHelper
-from dbhandler import get_user, set_user
+from dbhandler import get_user, set_user, get_user_idx
+from random import randint
+
 
 
 PH = PasswordHelper()
 
 def validateRegister(username, name, email, password):
-    user = {'user_id': 2, 'username': username, 'name': name,
+
+    id = get_user_idx()
+    newId = randint(1, 100)
+    while newId in id:
+        newId = randint(1, 100)
+    set_it = newId
+
+
+
+    user = {'user_id': set_it, 'username': username, 'name': name,
              'last_name': 'B', 'user_type': 'Student', 'password': PH.get_hash(password),
              'email': email, 'student_number': '801-15-9203', 'date_created': '2018-10-28 12:00:10'}
 

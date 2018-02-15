@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from flask_login import login_user, logout_user
 from user import User
 from passwordhelper import PasswordHelper
-from dbhandler import get_user
+from dbhandler import get_user, get_user_type
 PH = PasswordHelper()
 
 
@@ -21,7 +21,10 @@ def login():
     if validateLogin(username, password):
         user = User(username)
         login_user(user)
-        return redirect(url_for('home'))
+        if get_user_type(username) == "Staff":
+            return redirect(url_for('home_admin'))
+        else:
+            return redirect(url_for('home'))
     error = "Invalid User"
     return loginPage(error=error)
 
