@@ -7,7 +7,14 @@ DB = DBHelper()
 @login_required
 def home_admin():
 
-    return render_template("html/home_admin_proxy.html")
+    g.group_name = "prueba01"
+    current_question = get_in_progress_question(g.group_name)
+    questions = get_CompletedQuestion(g.group_name)
+
+    current_meeting = DB.get_meeting(g.group_name)
+    title = "2fast4u voting"
+
+    return render_template("html/home_admin.html", questions=questions, current_question= current_question, meeting_title=title)
 
 if __name__ == '__main__':
     app = Flask(__name__)
