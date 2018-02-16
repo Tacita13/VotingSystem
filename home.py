@@ -24,7 +24,6 @@ def home():
     voto = request.form.get("myText")
     if None != voto:
         print (voto)
-
     else:
         print "No hay nada"
 

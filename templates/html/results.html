@@ -2,14 +2,16 @@
 <html lang="en" >
 <head>
     <meta name = "viewport" content = "width = device-width, initial-scale = 1">
-    <title> {{question.get('question_title')}}</title>
+    <title> {{question}}</title>
     <link href = "{{url_for('static', filename='css/home_proxy.css') }}" rel = "stylesheet"  type = "text/css">
 <body>
-      <h1>{{question.get('question_title')}}</h1>
-      <li>Question Type: {{question.get('question_type')}}</li>
-      <li>Description  :{{question.get('question_description')}}</li>
-      <li>Author       :{{question.get('question_author')}}</li>
-      <li>Date Created :{{question.get('date_created')}}</li>
+      <h1>{{question_dict.get('question_title')}}</h1>
+      <li>Question Type: {{question_dict.get('question_type')}}</li>
+      <li>Description  :{{question_dict.get('question_description')}}</li>
+      <li>Author       :{{question_dict.get('question_author')}}</li>
+      <li>Date Created :{{question_dict.get('date_created')}}</li>
+      <li>Aqui ira el resultado</li>
+      <br>
       <form action="\home" method="post">
         <button>Done</button>
       </form>

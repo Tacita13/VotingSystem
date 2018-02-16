@@ -6,6 +6,6 @@ import ast
 @login_required
 def results():
     group_name = "prueba01"
-    question_title = request.form.get("question_title")
-    question_dict = get_Question(question_title, group_name)
-    return render_template("html/results.html", question= question_dict)
+    question = request.form.get("question")
+    question_dict = get_Question(question, group_name)
+    return render_template("html/results.html", question=question, question_dict=question_dict)

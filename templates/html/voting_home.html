@@ -25,6 +25,7 @@
       {% for question in questions %}
       <form action="/results" method="post">
          <button class = "past_questions" id="past_question" value="{{question.get('question_title')}}"> {{question.get("question_title")}} </button><br><br>
+        <input type="hidden" id="question" name="question" value="{{question.get('question_title')}}" ></input>
       </form>
       {% endfor %}
 
