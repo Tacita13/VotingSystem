@@ -1,20 +1,20 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, g
 from flask_login import login_required, LoginManager
 from mockdbhelper import MockDBHelper as DBHelper
+from dbhandler import get_in_progress_question, get_CompletedQuestion
 
 DB = DBHelper()
 # User Account
 @login_required
 def home():
-    meeting_id = 1
-    questions = DB.get_questions(meeting_id)
-    for question in questions:
-        if question.get("status") == "No":
-            current_question = question
-            questions.remove(question)
-            break
-    current_meeting = DB.get_meeting(meeting_id)
-    title = current_meeting.get('title')
+
+    g.group_name = "prueba01"
+    current_question = get_in_progress_question(g.group_name)
+    questions = get_CompletedQuestion(g.group_name)
+
+
+    current_meeting = DB.get_meeting(g.group_name)
+    title = "2fast4u voting"
     return render_template("html/home.html", questions=questions, current_question= current_question, meeting_title=title)
 
 if __name__ == '__main__':

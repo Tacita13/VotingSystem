@@ -1,36 +1,14 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_login import login_user, logout_user
-from mockdbhelper import MockDBHelper as DBHelper
 from user import User
 from passwordhelper import PasswordHelper
-from index import index
-
+from dbhandler import get_user, get_user_type
 PH = PasswordHelper()
-DB = DBHelper()
+
 
 
 def loginPage(error=""):
     return render_template("html/login.html", error=error)
-
-
-def register_page():
-    return render_template("register.html")
-
-
-# Stores user info in DB and returns to index.
-def register():
-    email = request.form.get("email")
-    pw1 = request.form.get("password")
-    pw2 = request.form.get("password2")
-    if not pw1 == pw2:
-        return redirect(url_for('register_page'))
-    if DB.get_user(email):
-        return redirect(url_for('register_page'))
-    salt = PH.get_salt()
-    hashed = PH.get_hash(pw1 + salt)
-    DB.add_user(email, salt, hashed)
-    return redirect(url_for('index'))
-
 
 def logout():
     logout_user()
@@ -38,23 +16,27 @@ def logout():
 
 
 def login():
-    email = request.form.get("username")
+    username = request.form.get("username")
     password = request.form.get("password")
-    if validateLogin(email, password):
-        user = User(email)
+    if validateLogin(username, password):
+        user = User(username)
         login_user(user)
-        return redirect(url_for('home'))
+        if get_user_type(username) == "Staff":
+            return redirect(url_for('home_admin'))
+        else:
+            return redirect(url_for('home'))
     error = "Invalid User"
     return loginPage(error=error)
 
 
-def validateLogin(email, password):
-    stored_user = DB.get_user(email)
-    if stored_user and PH.validate_password(password, stored_user['salt'], stored_user['hashed']):
-        return True
-    else:
-        return False
-
+def validateLogin(username, password):
+    users = get_user(username)
+    answer = False
+    if users:
+        user = users.pop()
+        if user and PH.validate_password(password, user['password'].encode('ascii', 'ignore')):
+            answer = True
+    return answer
 
 if __name__ == '__main__':
     app = Flask(__name__)
