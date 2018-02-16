@@ -73,6 +73,10 @@ class DBHandler:
         query = "SELECT * FROM Question WHERE voting_status='%s' AND group_name='%s'" % (status, group_name)
         return self.executeGetQuery(query)
 
+    def getQuestion(self, question_name, group_name):
+        query = "SELECT * FROM Question WHERE question_name='%s' AND group_name='%s'" % (question_name, group_name)
+        return self.executeGetQuery(query)
+
     def setResult(self,result):
         query = "INSERT INTO `Results` VALUES " \
                 "('%s', '%s', '%s', '%s','%s','%s', '%s', %s)" % \
