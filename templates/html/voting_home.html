@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/html">
+<html>
   
 <head>
   <meta name = "viewport" content = "width = device-width, initial-scale = 1">
@@ -17,21 +17,17 @@
 
   <div id = "questions">
     <h2> Current Question: </h2>
-    <button id = "current_question"> {{titulo}}</button>
+      <form action="/vote_page" method="post">
+    <button id = "current_question"> {{titulo}}  </button>
+      </form>
 
+      <br><h2> Past Questions: </h2>
+      {% for question in questions %}
+      <form action="/results" method="post">
+         <button class = "past_questions" id="past_question" value="{{question.get('question_title')}}"> {{question.get("question_title")}} </button><br><br>
+      </form>
+      {% endfor %}
 
-    <h2> <br> Past Questions: </h2>
-    {% for question in g.questions%}
-				<!--display question already voted on-->
-            <tr>
-                <td>
-                    <form action="\results" method="post">
-                        <button class = "past_questions" name="question" type="submit" value="{{question}}">{{question.get('question_title')}}</button>
-                    </form>
-                </td>
-            </tr>
-				<!--END display database content-->
-        {% endfor %}
   </div>
 
   <!-- The Modal -->
@@ -49,21 +45,22 @@
         <p id = "question_name"> </p>
         <p id = "question_type"> </p>
         <p> <button id = "Yes"> Yes </button>
-            <button id = "No"> No  </button>
-            <button id = "Abstained"> Abstained </button>
-        </p>
+        <button id = "No"> No  </button>
+        <button id = "Abstained"> Abstained </button> </p>
 
-    <button id = "Results"> Enviar </button>
+    <button id = "Results"> Results </button>
       </div>
 
     </div>
   </div>
  
   <footer>
-     <p> Alex </p>
-  <footer>
+     <p> {% if current_user.is_authenticated %}
+            Welcome: {{ current_user.email }}
+        {% endif %} </p>
+  </footer>
 
-    <script src = "../../static/js/voting_home.js"> </script>
+    <!--<script src = "../../static/js/voting_home.js"> </script>-->
 </body>
   
 </html>

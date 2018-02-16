@@ -33,10 +33,12 @@ body {
 position: center; }
 
 #questions {
-
-    text-indent: 5000px ;
-    text-align: center;
-    display: block ;
+    position: fixed;
+    text-align : center;
+    top : 10%;
+    left: 50%;
+    margin-top: 0px;
+    margin-left: -110px;
 }
 /* The Modal (background) */
 .modal {

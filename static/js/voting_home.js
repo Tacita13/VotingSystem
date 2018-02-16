@@ -4,7 +4,7 @@ var current_modal = document.getElementById('currentModal') ;
 // Get the button that opens the modal
 var current = document.getElementById("current_question") ;
 
-var past = document.getElementById("past_question1") ;
+var past = document.getElementById("past_question") ;
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0] ;
@@ -47,7 +47,7 @@ current.onclick = function() {
   current_modal.style.display = "block" ;
 
   document.getElementById("question_name").innerHTML = "Question:" + document.getElementById("current_question").innerHTML ;
-  document.getElementById("question_type").innerHTML = "Type of question:" + document.getElementById("hola").innerHTML ;
+  document.getElementById("question_type").innerHTML = "Type of question: Enmienda" ;
 }
 
 past.onclick = function() {
