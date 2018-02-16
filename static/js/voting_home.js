@@ -47,7 +47,7 @@ current.onclick = function() {
   current_modal.style.display = "block" ;
 
   document.getElementById("question_name").innerHTML = "Question:" + document.getElementById("current_question").innerHTML ;
-  document.getElementById("question_type").innerHTML = "Type of question: Enmienda" ;
+  document.getElementById("question_type").innerHTML = "Type of question:" + document.getElementById("hola").innerHTML ;
 }
 
 past.onclick = function() {

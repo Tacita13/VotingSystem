@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
   
 <head>
   <meta name = "viewport" content = "width = device-width, initial-scale = 1">
@@ -11,18 +11,28 @@
 <body>
 
   <header> 2Fast4U Voting </header>
-  
-  <h2> Animated Modal with Header and Footer </h2>
+
 
   <!-- Trigger/Open The Modal -->
 
   <div id = "questions">
     <h2> Current Question: </h2>
-    <button id = "current_question"> Se va a cambiar Moodle por Blackboard? </button>
+    <button id = "current_question"> {{titulo}}</button>
+    <input id="hola" type="hidden" value="{{descripcion}}"></input>
+    
 
     <h2> <br> Past Questions: </h2>
-    <button class = "past_questions" id = "past_question1"> Banos Unisex? </button> <br> <br>
-    <button class = "past_questions"> Huelga o no huelga? </button> <br> <br>
+    {% for question in g.questions%}
+				<!--display question already voted on-->
+            <tr>
+                <td>
+                    <form action="\results" method="post">
+                        <button class = "past_questions" name="question" type="submit" value="{{question}}">{{question.get('question_title')}}</button>
+                    </form>
+                </td>
+            </tr>
+				<!--END display database content-->
+        {% endfor %}
   </div>
 
   <!-- The Modal -->
@@ -40,10 +50,11 @@
         <p id = "question_name"> </p>
         <p id = "question_type"> </p>
         <p> <button id = "Yes"> Yes </button>
-        <button id = "No"> No  </button>
-        <button id = "Abstained"> Abstained </button> </p>
+            <button id = "No"> No  </button>
+            <button id = "Abstained"> Abstained </button>
+        </p>
 
-    <button id = "Results"> Results </button>
+    <button id = "Results"> Enviar </button>
       </div>
 
     </div>

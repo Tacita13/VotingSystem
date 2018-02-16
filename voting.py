@@ -19,12 +19,6 @@ def voting():
     titulo = a.get("question_title")
 
 
-
-
-
-
-
-
     return render_template("html/voting_prompt.html",titulo=titulo, descripcion=descripcion,
                            group_name=group_name, autor=autor, fecha=fecha, tipo=tipo)
 
