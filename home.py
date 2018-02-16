@@ -4,8 +4,6 @@ from mockdbhelper import MockDBHelper as DBHelper
 from dbhandler import get_in_progress_question, get_CompletedQuestion
 from user import User
 
-
-DB = DBHelper()
 # User Account
 @login_required
 def home():
@@ -30,10 +28,12 @@ def home():
     else:
         print "No hay nada"
 
-    return render_template("html/voting_home.html", questions=questions, titulo=titulo, descripcion=descripcion,
-                           group_name=group_name, autor=autor, fecha=fecha, tipo=tipo)
+    return render_template("html/voting_home.html", questions=questions, titulo=titulo, descripcion=descripcion,current_question = get_in_progress_question(group_name))
 
-if __name__ == '__main__':
+
+
+
+if __name__ == "__main__":
     app = Flask(__name__)
     app.secret_key = 'svdVhiUiLWW8X/GRkjxpQbD6F5uxHN4YS307PTeShVJc4E72GfcrtnOeUxlRRKRPSJQDIumkx6B21CUxXTd7LGloQvj0/LSyuub'
     login_manager = LoginManager(app)

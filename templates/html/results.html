@@ -1,43 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" >
 <head>
-  <meta charset="UTF-8">
-  <title>2Fast4U Voting System</title>
-
-<center>
-  <h1 style = "color: #F41111"><sup>{{question.get('question_title')}}</sup></h1>
-</center>
-      <link rel="stylesheet" href="{{url_for('static', filename='css/login-style.css') }}">
-
-
-</head>
-
-
-
-  <div class="login-page">
-  <div class="form">
-    <form class="register-form" action="/register" method="post">
-      <input type="text" name="username" placeholder="username"/>
-      <input type="text" name="name" placeholder="name"/>
-      <input type="password" name="password" placeholder="password"/>
-      <input type="password" name="password2" placeholder="password"/>
-      <input type="text" name="email" placeholder="email address"/>
-      <button>create</button>
-      <p class="message">Already registered? <a href="#">Sign In</a></p>
-    </form>
-    <form class="login-form" action="/login" method="post">
-      <input type="text" name="username" placeholder="username"/>
-      <input type="password" name="password" placeholder="password"/>
-      <button>login</button>
-      <p class="message">Not registered? <a href="#">Create an account</a></p>
-      <p> {{error}}</p>
-    </form>
-  </div>
-
-</div>
-  <script src="{{url_for('static', filename='js/jquery.min.js') }}"></script>
-
-    <script  src="{{url_for('static', filename='js/login-js.js') }}"></script>
-
+    <meta name = "viewport" content = "width = device-width, initial-scale = 1">
+    <title> {{question.get('question_title')}}</title>
+    <link href = "{{url_for('static', filename='css/home_proxy.css') }}" rel = "stylesheet"  type = "text/css">
+<body>
+      <h1>{{question.get('question_title')}}</h1>
+      <li>Question Type: {{question.get('question_type')}}</li>
+      <li>Description  :{{question.get('question_description')}}</li>
+      <li>Author       :{{question.get('question_author')}}</li>
+      <li>Date Created :{{question.get('date_created')}}</li>
+      <form action="\home" method="post">
+        <button>Done</button>
+      </form>
+</body>
 
 </html>

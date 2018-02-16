@@ -40,6 +40,10 @@ position: center; }
     margin-top: 0px;
     margin-left: -110px;
 }
+
+.form {
+    display: block ;
+}
 /* The Modal (background) */
 .modal {
     display: none ; /* Hidden by default */

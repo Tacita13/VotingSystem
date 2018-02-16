@@ -6,7 +6,7 @@
 
   <title> 2Fast4U Voting </title>
 
-  <link href = "../../static/css/voting_home.css" rel = "stylesheet"  type = "text/css"> </head>
+  <link href = "{{url_for('static', filename='css/voting_home.css') }}" rel = "stylesheet"  type = "text/css"> </head>
   
 <body>
 
@@ -27,6 +27,7 @@
          <button class = "past_questions" id="past_question" value="{{question.get('question_title')}}"> {{question.get("question_title")}} </button><br><br>
       </form>
       {% endfor %}
+
 
   </div>
 
@@ -60,7 +61,7 @@
         {% endif %} </p>
   </footer>
 
-    <!--<script src = "../../static/js/voting_home.js"> </script>-->
+
 </body>
   
 </html>
