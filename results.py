@@ -1,11 +1,11 @@
 from flask import Flask, render_template, request
 from flask_login import login_required, LoginManager
-from mockdbhelper import MockDBHelper as DBHelper
+from dbhandler import get_Question
 import ast
 
 @login_required
 def results():
-    question = request.form.get("question")
-    print type(question)
-
-    return render_template("html/results.html", question= question)
+    group_name = "prueba01"
+    question_title = request.form.get("question_title")
+    question_dict = get_Question(question_title, group_name)
+    return render_template("html/results.html", question= question_dict)

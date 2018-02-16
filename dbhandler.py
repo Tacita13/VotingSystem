@@ -73,8 +73,8 @@ class DBHandler:
         query = "SELECT * FROM Question WHERE voting_status='%s' AND group_name='%s'" % (status, group_name)
         return self.executeGetQuery(query)
 
-    def getQuestion(self, question_name, group_name):
-        query = "SELECT * FROM Question WHERE question_name='%s' AND group_name='%s'" % (question_name, group_name)
+    def getQuestion(self, question_title, group_name):
+        query = "SELECT * FROM question WHERE question_title='%s' AND group_name='%s'" % (question_title, group_name)
         return self.executeGetQuery(query)
 
     def setResult(self,result):
@@ -195,6 +195,16 @@ def get_CompletedQuestion(group_name):
     output = []
     for i in user:
         output.append(i)
+    DB.disconnect_get()
+    return output
+
+def get_Question(question_title, group_name):
+    DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')
+    DB.connect()
+    user = DB.getQuestion(question_title, group_name)
+    output = None
+    for i in user:
+        output = i
     DB.disconnect_get()
     return output
 
