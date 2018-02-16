@@ -15,12 +15,12 @@ def voting():
     autor = a.get("question_author")
     fecha = a.get("date_created")
     tipo = a.get("question_type")
+    descripcion = a.get("question_description")
+    titulo = a.get("question_title")
 
 
-
-
-
-    return render_template("html/voting_prompt.html",autor=autor, fecha=fecha, tipo=tipo)
+    return render_template("html/voting_prompt.html",titulo=titulo, descripcion=descripcion,
+                           group_name=group_name, autor=autor, fecha=fecha, tipo=tipo)
 
 if __name__ == '__main__':
     app = Flask(__name__)

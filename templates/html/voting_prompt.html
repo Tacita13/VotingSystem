@@ -14,11 +14,12 @@
 
 
 <!--  Question content and vote button -->
-<h2>Voting Prompt (here goes the question)</h2>
+<h2>{{titulo}}</h2>
+<h2>question here</h2>
 <ul>
-  <li>Autor:{{autor}}</li>
-  <li>Publicado: {{fecha}}</li>
-  <li>Tipo de Votación: {{tipo}}</li>
+  <li><h3>Autor:</h3>     {{autor}}</li>
+  <li><h3>Publicado:</h3> {{fecha}}</li>
+  <li><h3>Tipo de Votación:</h3> {{tipo}}</li>
   <li>
     <p>
       {{descripcion}}
@@ -26,27 +27,69 @@
   </li>
 </ul>
 
-<!-- Trigger/Open The Modal -->
-<button id="myBtn" class="button">Vote</button>
 
 <!-- The Modal -->
 <div id="myModal" class="modal">
 
 <!-- Modal content -->
-<div class="modal-content">
-  <div class="modal-header">
-    <span class="close">&times;</span>
-    <h2>Header</h2>
+<div class="modal-content"
+    <div class="modal-body">
+
+
+
+      <button class="button" id="0" onmouseover=myFunction() onmouseout=myFunctionOut() onClick="reply_click(this)" >Sí</button>
+      <button class="button" id="1" onmouseover=myFunction1() onmouseout=myFunction01() onClick="reply_click(this)">No</button>
+      <button class="button" id="2" onmouseover=myFunction2() onmouseout=myFunction02() onClick="reply_click(this)">Abstenido</button>
+
+
+
+        <script>
+        function myFunction() {
+            document.getElementById("0").style.color = "red"
+            document.getElementById("0").innerHTML = "SI!";
+        }
+        function myFunction1() {
+            document.getElementById("1").style.color = "red"
+            document.getElementById("1").innerHTML = "NO1!";
+        }
+        function myFunction2() {
+            document.getElementById("2").style.color = "red"
+            document.getElementById("2").innerHTML = "ABSTENIDO!";
+        }
+        function myFunction3() {
+            document.getElementById("myBtn").style.color = "red"
+            document.getElementById("myBtn").innerHTML = "VOTE!";
+        }
+        function myFunctionOut() {
+          document.getElementById("0").style.color = "black"
+          document.getElementById("0").innerHTML = "Si";
+        }
+        function myFunction01() {
+            document.getElementById("1").style.color = "black"
+            document.getElementById("1").innerHTML = "No";
+        }
+        function myFunction02() {
+            document.getElementById("2").style.color = "black"
+            document.getElementById("2").innerHTML = "Abstenido!";
+        }
+        function myFunction03() {
+            document.getElementById("myBtn").style.color = "black"
+            document.getElementById("myBtn").innerHTML = "Vote";
+        }
+        function reply_click(obj)
+          {
+          var id = obj.id;
+          }
+        </script>
+
+
   </div>
-  <div class="modal-body">
-    <h2 class="question_header">question here</h2>
-    <button class="button">Sí</button>
-    <button class="button">No</button>
-    <button class="button">Abstenido</button>
-  </div>
-  <div class="modal-footer">
-    <h3>Footer</h3>
-  </div>
+  <p>  </p>
+
+  <form action="\voting" method="post">
+  <button id="myBtn" class="button" onmouseover=myFunction3() onmouseout=myFunction03()>Vote</button>
+  </form>
+
 </div>
 
 <script>

@@ -14,22 +14,33 @@
         <a href="/logout" > Logout</a>
     </div>
     <table style="width:50%;text-align:left">
+        <h2>Create question</h2>
+        <form action="\create_question" method="post">
+            <button class ="creating" name="create_question_id" type="submit" value={{current_question.get('create_question_id')}}>{{current_question.get('title')}}</button>
+        </form>
+
+        <h2>Attendance</h2>
+        <form action="\attendance" method="post">
+            <button class ="attend" name="attendance_id" type="submit" value={{current_question.get('create_question_id')}}>{{current_question.get('title')}}</button>
+        </form>
+
         <h2>Vote</h2>
 				<!--display question for voting-->
         <form action="\voting" method="post">
-            <button class ="myBtn" name="question_id" type="submit" value="{{current_question.get('question_title')}}">{{current_question.get('question_title')}}</button>
+            <button class ="myBtn" name="question_id" type="submit" value={{current_question.get('question_id')}}>{{current_question.get('title')}}</button>
         </form>
 
         <h2>Results</h2>
-        {% for question in g.questions%}
+        {% for question in questions%}
 				<!--display question already voted on-->
             <tr>
                 <td>
                     <form action="\results" method="post">
-                        <button class = "past_questions" name="question_title" type="submit" value="{{question.get('question_title')}}">{{question.get('question_title')}}</button>
+                        <button class = "past_questions" name="question_id" type="submit" value={{question.get('question_id')}}>{{question.get('title')}}</button>
                     </form>
                 </td>
             </tr>
+
 				<!--END display database content-->
         {% endfor %}
 

@@ -6,13 +6,18 @@ from dbhandler import get_in_progress_question, get_CompletedQuestion
 # User Account
 @login_required
 def home():
-
-    g.group_name = "prueba01"
-    current_question = get_in_progress_question(g.group_name)
-    questions = get_CompletedQuestion(g.group_name)
-
-    title = "2fast4u voting"
-    return render_template("html/home.html", questions=questions, current_question= current_question, meeting_title=title)
+    group_name = "prueba01"
+    # print (group_name)
+    current_question = get_in_progress_question(group_name)
+    question = get_CompletedQuestion(group_name)
+    # print(a)
+    autor = current_question.get("question_author")
+    fecha = current_question.get("date_created")
+    tipo = current_question.get("question_type")
+    descripcion = current_question.get("question_description")
+    titulo = current_question.get("question_title")
+    return render_template("html/voting_home.html",question=question, titulo=titulo, descripcion=descripcion,
+                           group_name=group_name, autor=autor, fecha=fecha, tipo=tipo)
 
 if __name__ == '__main__':
     app = Flask(__name__)
