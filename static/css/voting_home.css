@@ -38,6 +38,10 @@ position: center; }
     text-align: center;
     display: block ;
 }
+
+.form {
+    display: block ;
+}
 /* The Modal (background) */
 .modal {
     display: none ; /* Hidden by default */

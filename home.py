@@ -7,16 +7,14 @@ from dbhandler import get_in_progress_question, get_CompletedQuestion
 @login_required
 def home():
     group_name = "prueba01"
-    # print (group_name)
     current_question = get_in_progress_question(group_name)
-    question = get_CompletedQuestion(group_name)
-    # print(a)
+    questions = get_CompletedQuestion(group_name)
     autor = current_question.get("question_author")
     fecha = current_question.get("date_created")
     tipo = current_question.get("question_type")
     descripcion = current_question.get("question_description")
     titulo = current_question.get("question_title")
-    return render_template("html/voting_home.html",question=question, titulo=titulo, descripcion=descripcion,
+    return render_template("html/voting_home.html", completed_questions=questions, titulo=titulo, descripcion=descripcion,
                            group_name=group_name, autor=autor, fecha=fecha, tipo=tipo)
 
 if __name__ == '__main__':

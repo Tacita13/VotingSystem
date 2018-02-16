@@ -6,7 +6,7 @@
 
   <title> 2Fast4U Voting </title>
 
-  <link href = "../../static/css/voting_home.css" rel = "stylesheet"  type = "text/css"> </head>
+  <link href = "{{url_for('static', filename='css/voting_home.css') }}" rel = "stylesheet"  type = "text/css"> </head>
   
 <body>
 
@@ -21,16 +21,10 @@
 
 
     <h2> <br> Past Questions: </h2>
-    {% for question in g.questions%}
-				<!--display question already voted on-->
-            <tr>
-                <td>
-                    <form action="\results" method="post">
-                        <button class = "past_questions" name="question" type="submit" value="{{question}}">{{question.get('question_title')}}</button>
-                    </form>
-                </td>
-            </tr>
-				<!--END display database content-->
+        {% for question in completed_questions%}
+            <button  name="question_title" type="submit" value="{{question.get('question_title')}}">{{question.get('question_title')}}</button>
+
+
         {% endfor %}
   </div>
 
@@ -63,7 +57,7 @@
      <p> Alex </p>
   <footer>
 
-    <script src = "../../static/js/voting_home.js"> </script>
+    <script src = "{{url_for('static', filename='js/voting_home.js') }}"> </script>
 </body>
   
 </html>

@@ -9,7 +9,6 @@ from home import home
 from home_admin import home_admin
 from voting import voting
 from results import results
-#from results import results
 
 app = Flask(__name__)
 login_manager = LoginManager(app)
@@ -22,7 +21,6 @@ app.add_url_rule("/login", "login", login, methods=['GET', 'POST'])
 app.add_url_rule("/logout", "logout", logout, methods=['GET', 'POST'])
 app.add_url_rule("/home", "home", home, methods=['GET', 'POST'])
 app.add_url_rule("/home_admin", "home_admin", home_admin, methods=['GET', 'POST'])
-#app.add_url_rule("/register_page", "register_page", register_page, methods=['GET', 'POST'])
 app.add_url_rule("/register", "register", register, methods=['GET', 'POST'])
 app.add_url_rule("/voting", "voting", voting, methods=['GET', 'POST'])
 app.add_url_rule("/results", "results", results, methods=['GET', 'POST'])
