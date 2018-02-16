@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name = "viewport" content = "width = device-width, initial-scale = 1">
+    <title> {{meeting_title}}</title>
+    <link href = "{{url_for('static', filename='css/home_proxy.css') }}" rel = "stylesheet"  type = "text/css">
+</head>
+<body>
+    <h1> {{meeting_title}}</h1>
+    <div>
+        {% if current_user.is_authenticated %}
+            Welcome: {{ current_user.email }}
+        {% endif %}
+        <a href="/logout" > Logout</a>
+    </div>
+    <table style="width:50%;text-align:left">
+        <h2>Create question</h2>
+        <form action="\create_question" method="post">
+            <button class ="creating" name="create_question_id" type="submit" value={{current_question.get('create_question_id')}}>{{current_question.get('title')}}</button>
+        </form>
+
+        <h2>Attendance</h2>
+        <form action="\attendance" method="post">
+            <button class ="attend" name="attendance_id" type="submit" value={{current_question.get('create_question_id')}}>{{current_question.get('title')}}</button>
+        </form>
+
+        <h2>Vote</h2>
+				<!--display question for voting-->
+        <form action="\voting" method="post">
+            <button class ="myBtn" name="question_id" type="submit" value={{current_question.get('question_id')}}>{{current_question.get('title')}}</button>
+        </form>
+
+        <h2>Results</h2>
+        {% for question in questions%}
+				<!--display question already voted on-->
+            <tr>
+                <td>
+                    <form action="\results" method="post">
+                        <button class = "past_questions" name="question_id" type="submit" value={{question.get('question_id')}}>{{question.get('title')}}</button>
+                    </form>
+                </td>
+            </tr>
+
+				<!--END display database content-->
+        {% endfor %}
+
+    </table>
+</body>
+</html>
