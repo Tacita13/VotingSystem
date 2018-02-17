@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_login import login_required, LoginManager, current_user
-from dbhandler import  get_deletePermission, get_addPermission, set_groupPermission, delete_Permission
+
+from dbhandler import get_deletePermission, get_addPermission, set_groupPermission, delete_Permission
+
 from random import randint
 
 

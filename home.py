@@ -1,14 +1,17 @@
-from flask import Flask, render_template, g, request
+from flask import Flask, render_template, g, request, redirect
 from flask_login import login_required, LoginManager, current_user
 from mockdbhelper import MockDBHelper as DBHelper
-from dbhandler import get_in_progress_question, get_CompletedQuestion
+from dbhandler import get_in_progress_question, get_CompletedQuestion, get_user_type
 from user import User
 
 # User Account
 @login_required
 def home():
-
-
+    type = get_user_type(current_user.email)
+    if type["user_type"] == "Student":
+        pass
+    else:
+        return redirect('/home')
     group_name = "prueba01"
     # print (group_name)
     a = get_in_progress_question(group_name)
@@ -25,7 +28,7 @@ def home():
     if None != voto:
         print (voto)
     else:
-        print "No hay nada"
+        print "No voto"
 
     return render_template("html/voting_home.html", questions=questions, titulo=titulo, descripcion=descripcion,current_question = get_in_progress_question(group_name))
 

@@ -8,9 +8,10 @@
   <h1 style = "color: #F41111"><sup>2Fast4U Voting System</sup></h1>
 </center>
       <link rel="stylesheet" href="{{url_for('static', filename='css/login-style.css') }}">
-
-
+        <a href="/home_admin" id="goHome">Go home</a>
+        <a href="/logout" id="logout">Log out</a>
 </head>
+<body>
 
 
 
@@ -18,15 +19,15 @@
   <div class="form" >
       <form class="login-form" action="/create_question" method="POST" >
       <input type="text" name="formulator" placeholder="Formulator"/>
-          <h5><p>{{text1}}</p></h5>
+          <h5 id="error"><p>{{text1}}</p></h5>
       <input type="text" name="question_type" placeholder="Question type"/>
-          <h5><p>{{text2}}</p></h5>
+          <h5><p id="error">{{text2}}</p></h5>
       <input type="text" name="question" placeholder="Question"/>
-          <h5><p>{{text3}}</p></h5>
+          <h5><p id="error">{{text3}}</p></h5>
       <input type="text" name="question_description" placeholder="Question description"/>
-          <h5><p>{{text4}}</p></h5>
+          <h5><p id="error">{{text4}}</p></h5>
       <input type="text" name="question_author" placeholder="Staff name"/>
-          <h5><p>{{text5}}</p></h5>
+          <h5><p id="error">{{text5}}</p></h5>
       <button >create</button>
            <p> {{error}}</p>
        </form>
@@ -37,6 +38,32 @@
   <script src="{{url_for('static', filename='js/jquery.min.js') }}"></script>
 
     <script  src="{{url_for('static', filename='js/login-js.js') }}"></script>
+<style>
+    #error{
+    color:red;
+    font-style: italic;
+    }
 
+    #goHome{
+    position: absolute;
+    top:5%;
+    left: 0%;
+    color:red;
+    margin-top: -10px;
+    font-size:20px;
+    margin-left: 5px;
+    }
+    #logout{
+    position: absolute;
+    top:5%;
+    left: 100%;
+    color:red;
+    margin-top: -10px;
+    font-size:20px;
+    margin-left: -85px;
+    }
+
+</style>
+</body>
 
 </html>
