@@ -21,13 +21,16 @@ def login():
     if validateLogin(username, password):
         user = User(username)
         login_user(user)
-        type = get_user_type(username)
-        for i in type:
-            type = i.get("user_type")
-            print(type)
-
-        if type == "Staff":
-            print ("yes")
+        # type = get_user_type(username)
+        # for i in type:
+        #     type = i.get("user_type")
+        #
+        # if type == "Staff":
+        #     print ("yes")
+        user_type = get_user_type(username)
+        if user_type is None:
+            return loginPage(error="Invalid User")
+        elif user_type['user_type'] == "Staff":
             return redirect(url_for('home_admin'))
         else:
             return redirect(url_for('home'))

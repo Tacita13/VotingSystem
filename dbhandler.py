@@ -148,10 +148,9 @@ def get_user_type(username, user='root', password='root', host='localhost', data
     DB = DBHandler(user=user, password=password, host=host, database=database, port= port)
     DB.connect()
     user = DB.getUserType(username)
-    output = []
-    if user:
-        for i in user:
-            output.append(i)
+    output = None
+    for i in user:
+        output = i
     DB.disconnect_get()
     return output
 
