@@ -29,19 +29,33 @@ body {
     background-size: 100% ;
 }
 
-#logout{
-position: center; }
+#goHome{
+    position: absolute;
+    top:5%;
+    left: 0%;
+    color:withe;
+    margin-top: -10px;
+    font-size:20px;
+    margin-left: 5px;
+    }
 
 #attendance{
 position: left; }
 
-#questions {
+#pregunta {
     position: fixed;
-    text-align : center;
     top : 10%;
     left: 50%;
     margin-top: 0px;
-    margin-left: -110px;
+    margin-left: -300px;
+
+#questions {
+     position: fixed;
+    text-align : left;
+    top : 10%;
+    left: 20%;
+    margin-top: 0px;
+    margin-left: -110px;z
 }
 
 .form {

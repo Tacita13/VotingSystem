@@ -3,8 +3,9 @@
 <head>
     <meta name = "viewport" content = "width = device-width, initial-scale = 1">
     <title> {{question}}</title>
-    <link href = "{{url_for('static', filename='css/home_proxy.css') }}" rel = "stylesheet"  type = "text/css">
+    <link href = "{{url_for('static', filename='css/voting_home.css') }}" rel = "stylesheet"  type = "text/css">
 <body>
+<header> 2Fast4U Voting <a href="/logout" id="logout" > Logout</a></header>
 <div id=resultado>
 
     <h1>{{question_dict.get('question_title')}}</h1>
@@ -14,12 +15,12 @@
       <li><h2>Date Created : {{question_dict.get('date_created')}}</h2></li>
       <li><h2>Aqui ira el resultado</h2></li>
       <br>
-    {% if current_user.email == "admin" %}
+    {% if user_type == "Staff" %}
     <form action="\home_admin" method="post">
         {% else %}
         <form action="\home" method="post">
         {% endif %}
-      
+
         <button>Done</button>
       </form>
 

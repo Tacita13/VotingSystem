@@ -29,7 +29,9 @@ body {
 }
 
 #questions {
-    text-align: center ;
+    margin-top: 0px;
+    margin-left: 5px;
+    text-align: left ;
     display: block ;
 }
 /* The Modal (background) */

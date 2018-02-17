@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link href = "../../static/css/voting_home.css" rel = "stylesheet"  type = "text/css"> </head>
+    <title> 2Fast4U Voting </title>
+    <link href = "{{url_for('static', filename='css/voting_home.css') }}" rel = "stylesheet"  type = "text/css">
+
+
 </head>
+<body>
+  <header>  <a href="/home" id="goHome">Go home</a> 2Fast4U Voting <a href="/logout" id="logout" > Logout</a></header>
+
 <style>
 /* The container */
 .container {

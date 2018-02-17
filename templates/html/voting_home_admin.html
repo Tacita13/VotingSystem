@@ -3,34 +3,14 @@
   
 <head>
     <style>
-        #logout {
-    position: fixed;
-    left: 100%;
-    color:white;
-    margin-top: 0px;
-    margin-left: -80px;
-    }
-    #attendance{
-    position: fixed;
-    left: 0%;
-    color:white;
-    margin-top: 0px;
-    margin-left: 5px;
-    }
-    #new_question{
-    position: fixed;
-    left: 0%;
-    color:white;
-    margin-top: 0px;
-    margin-left: 200px;
-    }
+
 
     </style>
   <meta name = "viewport" content = "width = device-width, initial-scale = 1">
 
   <title> 2Fast4U Voting </title>
 
-  <link href = "{{url_for('static', filename='css/voting_home.css') }}" rel = "stylesheet"  type = "text/css"> </head>
+  <link href = "{{url_for('static', filename='css/voting_home_admin.css') }}" rel = "stylesheet"  type = "text/css"> </head>
 
 <body>
 
@@ -47,7 +27,7 @@
   <div id = "questions">
     <h2> Current Question: </h2>
       <form action="/home_admin" method="post">
-    <button id = "current_question"> {{titulo}}  </button>
+    <button id = "current_question"> AQUI HACESAR EL PROGRESO DE LA PREGUNTA EN CURSO</button>
       </form>
 
       <br><h2> Past Questions: </h2>

@@ -29,8 +29,12 @@ body {
 }
 
 #questions {
-    text-align: center ;
-    display: block ;
+    position: fixed;
+    text-align : left;
+    top : 10%;
+    left: 20%;
+    margin-top: 0px;
+    margin-left: -110px;
 }
 /* The Modal (background) */
 .modal {
@@ -104,3 +108,28 @@ body {
     background-color: #5cb85c ;
     color: black ;
 }
+ #logout {
+    position: fixed;
+    left: 100%;
+    color:white;
+    margin-top: 0px;
+    margin-left: -80px;
+    }
+    #attendance{
+    position: fixed;
+    left: 0%;
+    color:white;
+    margin-top: 0px;
+    margin-left: 5px;
+    }
+    #error{
+    color:red;
+    font-style: italic;
+    }
+    #new_question{
+    position: fixed;
+    left: 0%;
+    color:white;
+    margin-top: 0px;
+    margin-left: 200px;
+    }
