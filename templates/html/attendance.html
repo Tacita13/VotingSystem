@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>{{group_name}}</h1>
+<form action="/attendance_submit" method="post">
+    {% for user in users %}
+      <input type="checkbox" name="user" value="{{user.get('username')}}">{{user.get('username')}} {{user.get('student_number')}}<br>
+    {% endfor %}
+    <input type="submit" value="Submit">
+</form>
+
+ <form action="/home_admin" method="post">
+    <button> Done  </button>
+ </form>
+</body>
+</html>
