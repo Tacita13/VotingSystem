@@ -28,6 +28,7 @@ app.add_url_rule("/register", "register", register, methods=['GET', 'POST'])
 app.add_url_rule("/voting", "voting", voting, methods=['GET', 'POST'])
 app.add_url_rule("/results", "results", results, methods=['GET', 'POST'])
 app.add_url_rule("/vote_page", "vote-page", vote_page, methods=['GET', 'POST'])
+app.add_url_rule("/attendance", "attendance", home_admin, methods=['GET', 'POST'])
 
 @login_manager.user_loader
 def load_user(user_id):
