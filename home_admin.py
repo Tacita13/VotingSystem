@@ -21,8 +21,10 @@ def home_admin():
     else:
         print "No hay nada"
 
+
     return render_template("html/voting_home_admin.html", questions=questions, titulo=titulo, descripcion=descripcion,
                            current_question=get_in_progress_question(group_name))
+
 
 
 if __name__ == '__main__':

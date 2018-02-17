@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for,g
 from flask_login import login_user, logout_user
 from user import User
 from passwordhelper import PasswordHelper
@@ -21,6 +21,12 @@ def login():
     if validateLogin(username, password):
         user = User(username)
         login_user(user)
+        # type = get_user_type(username)
+        # for i in type:
+        #     type = i.get("user_type")
+        #
+        # if type == "Staff":
+        #     print ("yes")
         user_type = get_user_type(username)
         if user_type is None:
             return loginPage(error="Invalid User")

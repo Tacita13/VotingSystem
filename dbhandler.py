@@ -22,7 +22,7 @@ class DBHandler:
         query = 'SELECT * FROM User WHERE username="%s"' % username
         return self.executeGetQuery(query)
     def getUserType(self,username, password=""):
-        query = 'SELECT user_type FROM User WHERE username="%s"' % username
+        query = 'SELECT * FROM User WHERE username="%s"' % username
         return self.executeGetQuery(query)
     def get_user_id(self):
         query = 'SELECT user_id FROM User'
