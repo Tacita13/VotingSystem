@@ -63,6 +63,20 @@ class DBHandler:
         query = "SELECT * FROM Create_Group WHERE group_name = '%s'" % group_name
         return self.executeGetQuery(query)
 
+    def getAddPermission(self,group_name):
+        query = 'SELECT username, student_number FROM user WHERE user_type="Student"' \
+                ' and username not in (SELECT username FROM group_permission WHERE group_name = "%s")' % group_name
+        return self.executeGetQuery(query)
+
+    def getDeletePermission(self, group_name):
+        query = 'SELECT user.username, student_number FROM user NATURAL join group_permission ' \
+                'WHERE user.username = group_permission.username and group_permission.group_name ="%s"' % group_name
+        return self.executeGetQuery(query)
+
+    def deletePermission(self, username, group_name):
+        query = 'DELETE FROM group_permission WHERE username = "%s" and group_name = "%s"' % (username, group_name)
+        return self.executeSetQuery(query)
+
     def setGroupPermission(self, permission):
         query = "INSERT INTO `Group_Permission` VALUES " \
                 "('%s', '%s', '%s', '%s', '%s')" % \
@@ -245,6 +259,7 @@ def get_user_idx():
         output.append(i)
     DB.disconnect_get()
     return output
+
 def get_question_idx():
     DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')
     DB.connect()
@@ -272,5 +287,33 @@ def set_groupPermission(permission):
     DB.connect()
     # Return True if successful or False otherwise.
     output = DB.setGroupPermission(permission)
+    DB.disconnect_set()
+    return output
+
+def get_addPermission(group_name):
+    DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')
+    DB.connect()
+    users = DB.getAddPermission(group_name)
+    output = []
+    for user in users:
+        output.append(user)
+    DB.disconnect_get()
+    return output
+
+def get_deletePermission(group_name):
+    DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')
+    DB.connect()
+    users = DB.getDeletePermission(group_name)
+    output = []
+    for user in users:
+        output.append(user)
+    DB.disconnect_get()
+    return output
+
+def delete_Permission(username, group_name):
+    DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')
+    DB.connect()
+    # Return True if successful or False otherwise.
+    output = DB.deletePermission(username, group_name)
     DB.disconnect_set()
     return output

@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_login import login_required, LoginManager, current_user
-from dbhandler import get_CompletedQuestion, get_in_progress_question, get_AllUserStudent, set_groupPermission,get_user_type
+
+from dbhandler import get_deletePermission, get_addPermission, set_groupPermission, delete_Permission
+
 from random import randint
 
 
@@ -8,14 +10,10 @@ from random import randint
 
 @login_required
 def attendance():
-    type = get_user_type(current_user.email)
-    if type == "Staff":
-        pass
-    else:
-        return redirect('/loginPage')
     group_name = "prueba01"
-    users = get_AllUserStudent()
-    return render_template("html/attendance.html", group_name=group_name, users=users)
+    users_add = get_addPermission(group_name)
+    users_delete = get_deletePermission(group_name)
+    return render_template("html/attendance.html", group_name=group_name, users_add=users_add, users_delete= users_delete)
 
 @login_required
 def attendance_submit():
@@ -28,6 +26,13 @@ def attendance_submit():
             print permission
     return redirect(url_for('attendance'))
 
+def attendance_delete():
+    group_name = "prueba01"
+    users = request.form.getlist('user')
+    for user in users:
+        if not delete_Permission(user, group_name):
+            print user
+    return redirect(url_for('attendance'))
 
 
 if __name__ == '__main__':
