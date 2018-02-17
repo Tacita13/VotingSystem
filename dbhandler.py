@@ -73,6 +73,10 @@ class DBHandler:
                 'WHERE user.username = group_permission.username and group_permission.group_name ="%s"' % group_name
         return self.executeGetQuery(query)
 
+    def getUserFromPermission(self,username, group_name):
+        query = 'Select * FROM group_permission WHERE username = "%s" and group_name = "%s"' % (username, group_name)
+        return self.executeGetQuery(query)
+
     def deletePermission(self, username, group_name):
         query = 'DELETE FROM group_permission WHERE username = "%s" and group_name = "%s"' % (username, group_name)
         return self.executeSetQuery(query)
@@ -316,4 +320,14 @@ def delete_Permission(username, group_name):
     # Return True if successful or False otherwise.
     output = DB.deletePermission(username, group_name)
     DB.disconnect_set()
+    return output
+
+def has_permission(username, group_name):
+    DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')
+    DB.connect()
+    users = DB.getUserFromPermission(username,group_name)
+    output = []
+    for user in users:
+        output.append(user)
+    DB.disconnect_get()
     return output
