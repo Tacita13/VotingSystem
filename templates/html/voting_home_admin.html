@@ -2,6 +2,16 @@
 <html>
   
 <head>
+    <style>
+        #logout {
+    position: fixed;
+    left: 100%;
+    colo
+    margin-top: 0px;
+    margin-left: -80px;
+    }
+
+    </style>
   <meta name = "viewport" content = "width = device-width, initial-scale = 1">
 
   <title> 2Fast4U Voting </title>
@@ -10,15 +20,14 @@
 
 <body>
 
-  <header> 2Fast4U Voting </header>
-
+  <header> 2Fast4U Voting <a href="/logout" id="logout" > Logout</a></header>
 
 
   <!-- Trigger/Open The Modal -->
 
   <div id = "questions">
     <h2> Current Question: </h2>
-      <form action="/vote_page" method="post">
+      <form action="/home_admin" method="post">
     <button id = "current_question"> {{titulo}}  </button>
       </form>
 
@@ -62,6 +71,7 @@
             Welcome: {{ current_user.email }}
         {% endif %} </p>
   </footer>
+
 
 
 </body>
