@@ -1,11 +1,16 @@
-from flask import Flask, render_template, request
-from flask_login import login_required, LoginManager
-from dbhandler import get_CompletedQuestion, get_in_progress_question
+from flask import Flask, render_template, request,redirect
+from flask_login import login_required, LoginManager,current_user
+from dbhandler import get_CompletedQuestion, get_in_progress_question,get_user_type
 
 
 # User Account
 @login_required
 def home_admin():
+    type = get_user_type(current_user.email)
+    if type["user_type"] == "Staff":
+        pass
+    else:
+        return redirect('/home_admin')
     group_name = "prueba01"
     # print (group_name)
     a = get_in_progress_question(group_name)

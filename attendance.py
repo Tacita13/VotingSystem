@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_login import login_required, LoginManager, current_user
-from dbhandler import get_CompletedQuestion, get_in_progress_question, get_AllUserStudent, set_groupPermission
+from dbhandler import get_CompletedQuestion, get_in_progress_question, get_AllUserStudent, set_groupPermission,get_user_type
 from random import randint
 
 
@@ -8,6 +8,11 @@ from random import randint
 
 @login_required
 def attendance():
+    type = get_user_type(current_user.email)
+    if type == "Staff":
+        pass
+    else:
+        return redirect('/loginPage')
     group_name = "prueba01"
     users = get_AllUserStudent()
     return render_template("html/attendance.html", group_name=group_name, users=users)

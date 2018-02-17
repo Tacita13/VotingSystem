@@ -1,12 +1,17 @@
-from flask import Flask, render_template, request, g
-from flask_login import login_required, LoginManager
+from flask import Flask, render_template, request, redirect
+from flask_login import login_required, LoginManager,current_user
 from mockdbhelper import MockDBHelper as DBHelper
-from dbhandler import get_in_progress_question, get_CompletedQuestion
+from dbhandler import get_in_progress_question, get_CompletedQuestion,get_user_type
 
 DB = DBHelper()
 # User Account
 @login_required
 def voting():
+    type = get_user_type(current_user.email)
+    if type["user_type"] == "Student":
+        pass
+    else:
+        return redirect('/home')
 
     group_name = "prueba01"
     a = get_in_progress_question(group_name)
