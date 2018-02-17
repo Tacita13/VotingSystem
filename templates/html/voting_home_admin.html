@@ -6,25 +6,31 @@
 
   <title> 2Fast4U Voting </title>
 
-  <link href = "../../static/css/voting_home_admin.css" rel = "stylesheet"  type = "text/css"> 
-</head>
+  <link href = "{{url_for('static', filename='css/voting_home.css') }}" rel = "stylesheet"  type = "text/css"> </head>
 
 <body>
 
   <header> 2Fast4U Voting </header>
 
-  <h2> Animated Modal with Header and Footer </h2>
+
 
   <!-- Trigger/Open The Modal -->
 
   <div id = "questions">
     <h2> Current Question: </h2>
-    <button id = "current_question"> Se va a cambiar Moodle por Blackboard? </button>
-    <a href = "edit_question_proxy"> Edit </a>
+      <form action="/vote_page" method="post">
+    <button id = "current_question"> {{titulo}}  </button>
+      </form>
 
-    <h2> <br> Past Questions: </h2>
-    <button class = "past_question" id = "past_question1"> Banos Unisex? </button> <br> <br>
-    <button class = "past_question"> Huelga o no huelga? </button> <br> <br>
+      <br><h2> Past Questions: </h2>
+      {% for question in questions %}
+      <form action="/results" method="post">
+         <button class = "past_questions" id="past_question" value="{{question.get('question_title')}}"> {{question.get("question_title")}} </button><br><br>
+        <input type="hidden" id="question" name="question" value="{{question.get('question_title')}}" ></input>
+      </form>
+      {% endfor %}
+
+
   </div>
 
   <!-- The Modal -->
@@ -41,17 +47,23 @@
       <div class = "modal-body">
         <p id = "question_name"> </p>
         <p id = "question_type"> </p>
-        <button id = "Results"> Results </button>
+        <p> <button id = "Yes"> Yes </button>
+        <button id = "No"> No  </button>
+        <button id = "Abstained"> Abstained </button> </p>
+
+    <button id = "Results"> Results </button>
       </div>
 
     </div>
   </div>
 
   <footer>
-   <p> Alex </p>
+     <p> {% if current_user.is_authenticated %}
+            Welcome: {{ current_user.email }}
+        {% endif %} </p>
   </footer>
 
-    <script src = "../../static/js/voting_home_admin.js"> </script>
+
 </body>
   
 </html>

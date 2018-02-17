@@ -1,4 +1,5 @@
 from dbhandler import set_question, set_userTable, set_user, get_user
+from passwordhelper import PasswordHelper as PH
 
 # SQL commands
 drop_table = "drop table if exists User;"
@@ -83,4 +84,8 @@ insert_table = "INSERT INTO `User` (`user_id`, `username`, `name`, `last_name`, 
 getUser = 'SELECT * FROM User WHERE username="TheDoctor"'
 insert_user = "INSERT INTO `User` (`user_id`, `username`, `name`, `last_name`, `user_type`, `password`, `email`, `student_number`, `date_created`) VALUES ('512f0f02-0', 'TheDoctor', 'NoOne', 'Knows', 'Staff', 'SaraJane', 'testsubject1@gmail.com', '801-44-7821', '2018-01-28 12:00:10')"
 
-
+PH = PH()
+user = {'user_id': 1, 'username': "admin", 'name': "admin",
+        'last_name': 'B', 'user_type': 'Staff', 'password': PH.get_hash('1'),
+        'email': "admin.com", 'student_number': '801-15-9203', 'date_created': '2018-10-28 12:00:10'}
+set_user(user)
