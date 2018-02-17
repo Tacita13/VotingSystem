@@ -29,6 +29,9 @@ class DBHandler:
     def get_user_id(self):
         query = 'SELECT user_id FROM User'
         return self.executeGetQuery(query)
+    def get_question_id(self):
+        query = 'SELECT question_id FROM Question'
+        return self.executeGetQuery(query)
 
     def getAllUserStudent(self, user_type="Student"):
         query = 'SELECT * FROM User WHERE user_type="%s"' % user_type
@@ -242,6 +245,17 @@ def get_user_idx():
         output.append(i)
     DB.disconnect_get()
     return output
+def get_question_idx():
+    DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')
+    DB.connect()
+    id = DB.get_question_id()
+
+    output = []
+    for i in id:
+        output.append(i)
+    DB.disconnect_get()
+    return output
+
 
 def get_in_progress_question(group_name):
     DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')

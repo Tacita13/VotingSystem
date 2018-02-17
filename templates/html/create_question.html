@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>2Fast4U Voting System</title>
+
+<center>
+  <h1 style = "color: #F41111"><sup>2Fast4U Voting System</sup></h1>
+</center>
+      <link rel="stylesheet" href="{{url_for('static', filename='css/login-style.css') }}">
+
+
+</head>
+
+
+
+  <div class="login-page">
+  <div class="form" >
+      <form class="login-form" action="/create_question" method="POST" >
+      <input type="text" name="formulator" placeholder="Formulator"/>
+          <h5><p>{{text1}}</p></h5>
+      <input type="text" name="question_type" placeholder="Question type"/>
+          <h5><p>{{text2}}</p></h5>
+      <input type="text" name="question" placeholder="Question"/>
+          <h5><p>{{text3}}</p></h5>
+      <input type="text" name="question_description" placeholder="Question description"/>
+          <h5><p>{{text4}}</p></h5>
+      <input type="text" name="question_author" placeholder="Staff name"/>
+          <h5><p>{{text5}}</p></h5>
+      <button >create</button>
+           <p> {{error}}</p>
+       </form>
+
+  </div>
+
+</div>
+  <script src="{{url_for('static', filename='js/jquery.min.js') }}"></script>
+
+    <script  src="{{url_for('static', filename='js/login-js.js') }}"></script>
+
+
+</html>
