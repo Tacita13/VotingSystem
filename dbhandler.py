@@ -21,14 +21,20 @@ class DBHandler:
     def getUser(self,username, password=""):
         query = 'SELECT * FROM User WHERE username="%s"' % username
         return self.executeGetQuery(query)
+
     def getUserType(self,username, password=""):
         query = 'SELECT * FROM User WHERE username="%s"' % username
         return self.executeGetQuery(query)
+
     def get_user_id(self):
         query = 'SELECT user_id FROM User'
         return self.executeGetQuery(query)
     def get_question_id(self):
         query = 'SELECT question_id FROM Question'
+        return self.executeGetQuery(query)
+
+    def getAllUserStudent(self, user_type="Student"):
+        query = 'SELECT * FROM User WHERE user_type="%s"' % user_type
         return self.executeGetQuery(query)
 
     def setUser(self,user):
@@ -56,6 +62,13 @@ class DBHandler:
     def getGroup(self,group_name):
         query = "SELECT * FROM Create_Group WHERE group_name = '%s'" % group_name
         return self.executeGetQuery(query)
+
+    def setGroupPermission(self, permission):
+        query = "INSERT INTO `Group_Permission` VALUES " \
+                "('%s', '%s', '%s', '%s', '%s')" % \
+                (permission['permission_id'], permission['group_id'], permission['username'],
+                 permission['permission_creator'], permission['group_name'])
+        return self.executeSetQuery(query)
 
     def setQuestion(self, question):
         query = "INSERT INTO `Question` VALUES " \
@@ -147,6 +160,19 @@ def get_user(username, user='root', password='root', host='localhost', database=
             output.append(i)
     DB.disconnect_get()
     return output
+
+def get_AllUserStudent( user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306'):
+    DB = DBHandler(user=user, password=password, host=host, database=database, port= port)
+    DB.connect()
+    user = DB.getAllUserStudent()
+    output = []
+    if user:
+        for i in user:
+            output.append(i)
+    DB.disconnect_get()
+    return output
+
+
 def get_user_type(username, user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306'):
     DB = DBHandler(user=user, password=password, host=host, database=database, port= port)
     DB.connect()
@@ -239,4 +265,12 @@ def get_in_progress_question(group_name):
     for i in quesiton:
         output = i
     DB.disconnect_get()
+    return output
+
+def set_groupPermission(permission):
+    DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')
+    DB.connect()
+    # Return True if successful or False otherwise.
+    output = DB.setGroupPermission(permission)
+    DB.disconnect_set()
     return output

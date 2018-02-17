@@ -10,6 +10,9 @@ from home_admin import home_admin
 from voting import voting
 from results import results
 from create_question import create_question
+from attendance import attendance, attendance_submit
+
+
 from vote_page import vote_page
 #from results import results
 
@@ -30,6 +33,8 @@ app.add_url_rule("/results", "results", results, methods=['GET', 'POST'])
 app.add_url_rule("/vote_page", "vote-page", vote_page, methods=['GET', 'POST'])
 app.add_url_rule("/attendance", "attendance", home_admin, methods=['GET', 'POST'])
 app.add_url_rule("/create_question", "create_question", create_question, methods=['GET', 'POST'])
+app.add_url_rule("/attendance", "attendance", attendance, methods=['GET', 'POST'])
+app.add_url_rule("/attendance_submit", "attendance_submit", attendance_submit, methods=['GET', 'POST'])
 
 @login_manager.user_loader
 def load_user(user_id):
