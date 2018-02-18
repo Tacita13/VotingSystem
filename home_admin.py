@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request,redirect
 from flask_login import login_required, LoginManager,current_user
-from dbhandler import get_CompletedQuestion, get_in_progress_question,get_user_type
+from dbhandler import get_CompletedQuestion, get_in_progress_question,get_user_type, update_question
 
 
 # User Account
@@ -30,6 +30,15 @@ def home_admin():
     return render_template("html/voting_home_admin.html", questions=questions, titulo=titulo, descripcion=descripcion,
                            current_question=get_in_progress_question(group_name))
 
+def finish_voting():
+    # Query: Transition question to from In-Progress to Complete.
+    #group_name = "prueba01"
+    #question_title = request.form.get('question_title')
+    #if update_question(question_title, group_name):
+        # Query: Sum up all the results from Voting table and put it in Results table.
+        #SELECT COUNT(voting_choice) FROM Voting  WHERE group_name='Vigilantes'  AND question_title='Destruction of Killgrave'  AND question_type='Proposition' AND voting_choice='Yes'
+    #return redirect(url_for('home_admin'))
+    pass
 
 
 if __name__ == '__main__':

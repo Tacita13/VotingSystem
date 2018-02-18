@@ -97,6 +97,11 @@ class DBHandler:
                  question.get('date_created'))
         return self.executeSetQuery(query)
 
+    def updateQuestion(self, question_title, group_name):
+        query = 'UPDATE question SET voting_status = "Completed" ' \
+                'WHERE question_title = "%s" and group_name="%s"' % (question_title, group_name)
+        return self.executeSetQuery(query)
+
     def getInProgressQuestion(self, group_name):
         status ="In-Progress"
         query = "SELECT * FROM Question  WHERE voting_status='%s' AND group_name='%s'" % (status, group_name)
@@ -330,4 +335,12 @@ def has_permission(username, group_name):
     for user in users:
         output.append(user)
     DB.disconnect_get()
+    return output
+
+def update_question(question_title, group_name):
+    DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')
+    DB.connect()
+    # Return True if successful or False otherwise.
+    output = DB.updateQuestion(question_title, group_name)
+    DB.disconnect_set()
     return output
