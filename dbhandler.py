@@ -97,9 +97,9 @@ class DBHandler:
                  question.get('date_created'))
         return self.executeSetQuery(query)
 
-    def updateQuestion(self, question_title, group_name):
+    def updateQuestion(self, question_id, group_name):
         query = 'UPDATE question SET voting_status = "Completed" ' \
-                'WHERE question_title = "%s" and group_name="%s"' % (question_title, group_name)
+                'WHERE question_id = "%s" and group_name="%s"' % (question_id, group_name)
         return self.executeSetQuery(query)
 
     def getInProgressQuestion(self, group_name):
@@ -120,10 +120,14 @@ class DBHandler:
         query = "SELECT * FROM question WHERE question_title='%s' AND group_name='%s'" % (question_title, group_name)
         return self.executeGetQuery(query)
 
+    def getQuestionByID(self, question_id, group_name):
+        query = "SELECT * FROM question WHERE question_id='%s' AND group_name='%s'" % (question_id, group_name)
+        return self.executeGetQuery(query)
+
     def setResult(self,result):
         query = "INSERT INTO `Results` VALUES " \
-                "('%s', '%s', '%s', '%s','%s','%s', '%s', %s)" % \
-                (result.get('result_id'), result.get('question_title'), result.get('question_type'),
+                "('%s', %s,'%s', '%s', '%s','%s','%s', '%s', %s)" % \
+                (result.get('result_id'),result.get('question_id'), result.get('question_title'), result.get('question_type'),
                  result.get('group_name'), result.get('count_yes'), result.get('count_no'),
                  result.get('count_abstain'), result.get('total_voters'))
         return self.executeSetQuery(query)
@@ -140,7 +144,12 @@ class DBHandler:
         return self.executeSetQuery(query)
 
     def getVote(self, question_title):
-        query = "SELECT * FROM Voting WHERE question_title= %s" % question_title
+        query = "SELECT * FROM Voting WHERE question_title= '%s'" % question_title
+        return self.executeGetQuery(query)
+
+    def getVoteCount(self, group_name, question_id, voting_choice):
+        query = 'SELECT COUNT(voting_choice) as vote_count FROM Voting ' \
+                'WHERE group_name="%s" AND question_id="%s" AND voting_choice="%s"' % (group_name, question_id, voting_choice)
         return self.executeGetQuery(query)
 
     def set_Table(self, query):
@@ -263,6 +272,16 @@ def get_Question(question_title, group_name):
     DB.disconnect_get()
     return output
 
+def get_QuestionByID(question_id, group_name):
+    DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')
+    DB.connect()
+    user = DB.getQuestionByID(question_id, group_name)
+    output = None
+    for i in user:
+        output = i
+    DB.disconnect_get()
+    return output
+
 def get_user_idx():
     DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')
     DB.connect()
@@ -350,10 +369,28 @@ def has_permission(username, group_name):
     DB.disconnect_get()
     return output
 
-def update_question(question_title, group_name):
+def update_question(question_id, group_name):
     DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')
     DB.connect()
     # Return True if successful or False otherwise.
-    output = DB.updateQuestion(question_title, group_name)
+    output = DB.updateQuestion(question_id, group_name)
+    DB.disconnect_set()
+    return output
+
+def get_voteCount(group_name, question_id, voting_choice):
+    DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')
+    DB.connect()
+    quesiton = DB.getVoteCount(group_name, question_id, voting_choice)
+    output = None
+    for i in quesiton:
+        output = i
+    DB.disconnect_get()
+    return output
+
+def set_result(result):
+    DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')
+    DB.connect()
+    # Return True if successful or False otherwise.
+    output = DB.setResult(result)
     DB.disconnect_set()
     return output
