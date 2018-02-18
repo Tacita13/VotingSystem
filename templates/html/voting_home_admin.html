@@ -31,6 +31,10 @@
          <button class = "current_question" id="current_question" value="{{as.get('question_title')}}"> {{as.get("question_title")}} </button><br><br>
         <input type="hidden" id="cuestion1" name="question" value="{{as.get('question_title')}}" ></input>
       </form>
+      <form action="/end_vote" method="post">
+         <button class = "current_question"  name="question_id" value="{{as.get('question_id')}}"> End Vote </button><br><br>
+      </form>
+      <br>
       {% endfor %}
 
       <br><h2> Past Questions: </h2>

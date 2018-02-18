@@ -6,7 +6,7 @@ from index import index
 from login import login, loginPage, logout
 from register import register
 from home import home
-from home_admin import home_admin
+from home_admin import home_admin, end_vote
 from voting import voting
 from results import results
 from create_question import create_question
@@ -35,6 +35,7 @@ app.add_url_rule("/create_question", "create_question", create_question, methods
 app.add_url_rule("/attendance", "attendance", attendance, methods=['GET', 'POST'])
 app.add_url_rule("/attendance_submit", "attendance_submit", attendance_submit, methods=['GET', 'POST'])
 app.add_url_rule("/attendance_delete", "attendance_delete", attendance_delete, methods=['GET', 'POST'])
+app.add_url_rule("/end_vote", "end_vote", end_vote, methods=['GET', 'POST'])
 
 @login_manager.user_loader
 def load_user(user_id):
