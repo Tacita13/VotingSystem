@@ -106,6 +106,10 @@ class DBHandler:
         status ="In-Progress"
         query = "SELECT * FROM Question  WHERE voting_status='%s' AND group_name='%s'" % (status, group_name)
         return self.executeGetQuery(query)
+    def getInProgressQuestion1(self, group_name,titulo):
+        status ="In-Progress"
+        query = "SELECT * FROM Question  WHERE voting_status='%s' AND group_name='%s' AND question_title='%s'" % (status, group_name,titulo)
+        return self.executeGetQuery(query)
 
     def getCompletedQuestions(self, group_name):
         status = "Completed"
@@ -285,6 +289,15 @@ def get_in_progress_question(group_name):
     DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')
     DB.connect()
     quesiton = DB.getInProgressQuestion(group_name)
+    output = []
+    for i in quesiton:
+        output.append(i)
+    DB.disconnect_get()
+    return output
+def get_in_progress_question1(group_name,titulo):
+    DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')
+    DB.connect()
+    quesiton = DB.getInProgressQuestion1(group_name,titulo)
     output = None
     for i in quesiton:
         output = i

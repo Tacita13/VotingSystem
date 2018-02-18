@@ -6,6 +6,7 @@ from dbhandler import get_CompletedQuestion, get_in_progress_question,get_user_t
 # User Account
 @login_required
 def home_admin():
+    print("Esto es una prueba")
     type = get_user_type(current_user.email)
     if type["user_type"] == "Staff":
         pass
@@ -15,10 +16,8 @@ def home_admin():
     # print (group_name)
     a = get_in_progress_question(group_name)
     questions = get_CompletedQuestion(group_name)
+    print (a)
 
-
-    descripcion = a.get("question_description")
-    titulo = a.get("question_title")
 
     voto = request.form.get("myText")
     if None != voto:
@@ -27,7 +26,7 @@ def home_admin():
         print "No hay nada"
 
 
-    return render_template("html/voting_home_admin.html", questions=questions, titulo=titulo, descripcion=descripcion,
+    return render_template("html/voting_home_admin.html", questions=questions, a=a,
                            current_question=get_in_progress_question(group_name))
 
 def finish_voting():
