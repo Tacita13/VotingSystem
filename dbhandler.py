@@ -402,9 +402,10 @@ def set_result(result):
 def set_vote(vote):
     DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')
     DB.connect()
-    output = DB. setVoting(vote)
+    output = DB.setVoting(vote)
     DB.disconnect_set()
     return output
+
 def get_user_has_vote(vote_id, question):
     DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')
     DB.connect()
