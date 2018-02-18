@@ -10,8 +10,30 @@ header {
     color: white ;
     background: red ;
 }
-
-
+#logout {
+    position: fixed;
+    left: 100%;
+    color:white;
+    margin-top: 0px;
+    margin-left: -80px;
+    }
+#goHome{
+    position: absolute;
+    top:5%;
+    left: 0%;
+    color:withe;
+    margin-top: -10px;
+    font-size:20px;
+    margin-left: 5px;
+    }
+#questions {
+    position: absolute;
+    text-align : left;
+    top : 10%;
+    left: 20%;
+    margin-top: 0px;
+    margin-left: -110px;
+}
 footer {
     font-size: x-large ;
     font-weight: bolder ;
@@ -23,25 +45,10 @@ footer {
     background: red ;
     color: white ;
 }
-
 body {
     background-image: url("upr_gallo_gris.png") ;
     background-size: 100% ;
 }
-
-#goHome{
-    position: absolute;
-    top:5%;
-    left: 0%;
-    color:withe;
-    margin-top: -10px;
-    font-size:20px;
-    margin-left: 5px;
-    }
-
-#attendance{
-position: left; }
-
 #pregunta {
     position: fixed;
     top : 10%;
@@ -49,14 +56,10 @@ position: left; }
     margin-top: 0px;
     margin-left: -300px;
 
-#questions {
-     position: fixed;
-    text-align : left;
-    top : 10%;
-    left: 20%;
-    margin-top: 0px;
-    margin-left: -110px;z
-}
+#attendance {
+position: left; }
+
+
 
 .form {
     display: block ;
