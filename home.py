@@ -1,6 +1,6 @@
 from flask import Flask, render_template, g, request, redirect
 from flask_login import login_required, LoginManager, current_user
-from dbhandler import get_in_progress_question, get_CompletedQuestion, get_user_type
+from dbhandler import get_in_progress_question, get_CompletedQuestion, get_user_type, set_vote,get_in_progress_question1, get_user_has_vote
 from user import User
 
 # User Account
@@ -17,8 +17,19 @@ def home():
     questions = get_CompletedQuestion(group_name)
 
     voto = request.form.get("myText")
+    pregunta = request.form.get("titulo")
+    tipo = request.form.get("tipo")
     if None != voto:
-        print (voto)
+        current_question = get_in_progress_question1(group_name,pregunta)
+
+        yavoto = get_user_has_vote(current_user.email,pregunta)
+        print yavoto
+        if yavoto == None or (yavoto["voting_id"] ==  None and yavoto['question_title'] == None) :
+            vote = {'voting_id':current_user.email, 'question_id':current_question['question_id'], 'group_name':"prueba01",
+            'question_title':pregunta, 'question_type':tipo, 'voting_choice':voto}
+            set_vote(vote)
+        else:
+            return "Ya voto"
     else:
         print "No voto"
 

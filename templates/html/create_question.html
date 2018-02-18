@@ -10,14 +10,21 @@
 
 
 </head>
-<body>
- <header><a href="/home_admin" id="attendance">Go home</a>
+<body><div class="header" id="myHeader">
+  <a href="/home_admin" id="goHome">Go Home</a>
     <a href="/create_question" id="new_question">New Question</a>
-    2Fast4U Voting
-    <a href="/logout" id="logout" > Logout</a></header>
+  <span id="nombre">2Fast4U Voting</span>
+    <a href="/logout" id="logout" > Logout</a>
+</div>
+ <!--<header><a href="/home_admin" id="attendance">Go home</a>-->
+    <!--<a href="/create_question" id="new_question">New Question</a>-->
+    <!--2Fast4U Voting-->
+    <!--<a href="/logout" id="logout" > Logout</a></header>-->
 
 
-
+<div class="content">
+    <!--mi codigo va aqui-->
+            <div id = "questions">
   <div class="login-page">
   <div class="form" >
       <form class="login-form" method="POST" >
@@ -37,6 +44,8 @@
 
   </div>
 
+</div>
+            </div>
 </div>
   <script src="{{url_for('static', filename='js/jquery.min.js') }}"></script>
 

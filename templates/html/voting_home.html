@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" >
 <head>
-    <meta charset="UTF-8">
-
-
-  <title> 2Fast4U Voting </title>
+<title> 2Fast4U Voting </title>
 <link href = "{{url_for('static', filename='css/voting_home.css') }}" rel = "stylesheet"  type = "text/css"></head>
-  
+</head>
 <body>
+<div class="header" id="myHeader">
+  <span id="nombre">2Fast4U Voting</span>
+    <a href="/logout" id="logout" > Logout</a>
 
-  <header> 2Fast4U Voting <a href="/logout" id="logout" > Logout</a></header>
-
+</div>
 
   <!-- Trigger/Open The Modal -->
-
+<div class="content">
   <div id = "questions">
     <h2> Current Question: </h2>
     {% for question in a %}
@@ -32,13 +31,13 @@
 
   </div>
 
-
- 
-  <footer>
-     <p> {% if current_user.is_authenticated %}
-            Welcome: {{ current_user.email }}
-        {% endif %} </p>
-  </footer>
+</div>
+ <!---->
+  <!--<footer>-->
+     <!--<p> {% if current_user.is_authenticated %}-->
+            <!--Welcome: {{ current_user.email }}-->
+        <!--{% endif %} </p>-->
+  <!--</footer>-->
 
 
 

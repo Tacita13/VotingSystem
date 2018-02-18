@@ -29,12 +29,10 @@ body {
 }
 
 #questions {
-    position: fixed;
+    position: initial;
     text-align : left;
-    top : 10%;
-    left: 20%;
     margin-top: 0px;
-    margin-left: -110px;
+    margin-left: 50px;
 }
 /* The Modal (background) */
 .modal {
@@ -109,13 +107,18 @@ body {
     color: black ;
 }
 #goHome{
-    position: absolute;
-    top:5%;
+    position: fixed;``
     left: 0%;
-    color:withe;
-    margin-top: -10px;
-    font-size:20px;
-    margin-left: 5px;
+    color:white;
+    margin-top: 0px;
+    margin-left: 5px;;
+    }
+#nombre{
+    position: fixed;
+    left: 50%;
+    color:white;
+    margin-top: 0px;
+    margin-left: -60px;
     }
  #logout {
     position: fixed;
@@ -124,21 +127,52 @@ body {
     margin-top: 0px;
     margin-left: -80px;
     }
-    #attendance{
+  #attendance{
     position: fixed;
     left: 0%;
     color:white;
     margin-top: 0px;
     margin-left: 5px;
     }
-    #error{
+ #error{
     color:red;
     font-style: italic;
     }
-    #new_question{
+ #new_question{
     position: fixed;
     left: 0%;
     color:white;
     margin-top: 0px;
     margin-left: 200px;
     }
+body {
+  margin: 0;
+  font-family: sans-serif;
+}
+
+.top-container {
+  background-color: #f1f1f1;
+  padding: 30px;
+  text-align: center;
+}
+
+.header {
+  padding: 30px;
+  padding-top: 10px;
+  background: #F40408;
+  color: #f1f1f1;
+}
+
+.content {
+  padding: 16px;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.sticky + .content {
+  padding-top: 102px;
+}

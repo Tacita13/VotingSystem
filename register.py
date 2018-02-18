@@ -11,6 +11,7 @@ def validateRegister(username, name, email, password):
 
     id = get_user_idx()
     newId = randint(1, 100)
+    newId1 = randint(1,1000)
     while newId in id:
         newId = randint(1, 100)
     set_it = newId
@@ -19,7 +20,7 @@ def validateRegister(username, name, email, password):
 
     user = {'user_id': set_it, 'username': username, 'name': name,
              'last_name': 'B', 'user_type': 'Student', 'password': PH.get_hash(password),
-             'email': email, 'student_number': '801-15-9203', 'date_created': '2018-10-28 12:00:10'}
+             'email': email, 'student_number': '801-15-'+newId1, 'date_created': '2018-10-28 12:00:10'}
 
     return set_user(user)
 

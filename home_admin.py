@@ -16,7 +16,7 @@ def home_admin():
     # print (group_name)
     a = get_in_progress_question(group_name)
     questions = get_CompletedQuestion(group_name)
-    print (a[0]['question_id'])
+    # print (a[0]['question_id'])
 
 
     voto = request.form.get("myText")
@@ -39,7 +39,7 @@ def end_vote():
         yes = get_voteCount(group_name, question_id, "Yes")['vote_count']
         no = get_voteCount(group_name, question_id, "No")['vote_count']
         abstain = get_voteCount(group_name, question_id, "Abstain")['vote_count']
-        print yes
+        print (yes,no,abstain)
         result = {'result_id': randint(1, 100), 'question_id': question_id, 'question_title': question['question_title'],
                   'question_type': question['question_type'], 'group_name': group_name, 'count_yes': yes,
                   'count_no': no, 'count_abstain': abstain, 'total_voters': int(yes) + int(no) + int(abstain)}

@@ -146,6 +146,10 @@ class DBHandler:
     def getVote(self, question_title):
         query = "SELECT * FROM Voting WHERE question_title= '%s'" % question_title
         return self.executeGetQuery(query)
+    def getUserHasVote(self, vote_id, qeustion):
+        query = "SELECT * FROM Voting WHERE voting_id= '%s' AND question_title= '%s'" % (vote_id, qeustion)
+        return self.executeGetQuery(query)
+
 
     def getVoteCount(self, group_name, question_id, voting_choice):
         query = 'SELECT COUNT(voting_choice) as vote_count FROM Voting ' \
@@ -393,4 +397,20 @@ def set_result(result):
     # Return True if successful or False otherwise.
     output = DB.setResult(result)
     DB.disconnect_set()
+    return output
+
+def set_vote(vote):
+    DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')
+    DB.connect()
+    output = DB. setVoting(vote)
+    DB.disconnect_set()
+    return output
+def get_user_has_vote(vote_id, question):
+    DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')
+    DB.connect()
+    quesiton = DB.getUserHasVote(vote_id, question)
+    output = None
+    for i in quesiton:
+        output = i
+    DB.disconnect_get()
     return output

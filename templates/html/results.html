@@ -3,9 +3,36 @@
 <head>
   <meta charset="UTF-8">
     <title> {{question}}</title>
-    <link href = "{{url_for('static', filename='css/voting_home.css') }}" rel = "stylesheet"  type = "text/css">
+        {% if user_type == "Staff" %}
+        <link href = "{{url_for('static', filename='css/voting_home_admin.css') }}" rel = "stylesheet"  type = "text/css">
+
+        {% else %}
+            <link href = "{{url_for('static', filename='css/voting_home.css') }}" rel = "stylesheet"  type = "text/css">
+
+        {% endif %}
+
 <body>
-<header> 2Fast4U Voting <a href="/logout" id="logout" > Logout</a></header>
+<!--<header> 2Fast4U Voting <a href="/logout" id="logout" > Logout</a></header>-->
+  {% if user_type == "Staff" %}
+    <div class="header" id="myHeader">
+
+          <a href="/attendance" id="attendance">Attendance</a>
+            <a href="/create_question" id="new_question">New Question</a>
+          <span id="nombre">2Fast4U Voting</span>
+            <a href="/logout" id="logout" > Logout</a>
+    </div>
+        {% else %}
+            <div class="header" id="myHeader">
+            <a href="/home" id="goHome" > Go Home</a>
+             <span id="nombre">2Fast4U Voting</span>
+             <a href="/logout" id="logout" > Logout</a>
+            </div>
+        {% endif %}
+
+<div class="content">
+    <!--mi codigo va aqui-->
+            <div id = "questions">
+
 <div id=resultado>
 
     <h1>{{question_dict.get('question_title')}}</h1>
@@ -22,8 +49,10 @@
         {% endif %}
 
         <button>Done</button>
-      </form>
+     </form>
 
+</div>
+            </div>
 </div>
 
 </body>

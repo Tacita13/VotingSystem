@@ -1,85 +1,59 @@
 <!DOCTYPE html>
-<html>
-  
+<html lang="es">
 <head>
-    <style>
-
-
-    </style>
-  <meta charset="UTF-8">
-
-  <title> 2Fast4U Voting </title>
-
-  <link href = "{{url_for('static', filename='css/voting_home_admin.css') }}" rel = "stylesheet"  type = "text/css"> </head>
-
+<title> 2Fast4U Voting </title>
+<link href = "{{url_for('static', filename='css/voting_home_admin.css') }}" rel = "stylesheet"  type = "text/css">
+</head>
 <body>
-
-
-  <header><a href="/attendance" id="attendance">Attendance</a>
+<div class="header" id="myHeader">
+  <a href="/attendance" id="attendance">Attendance</a>
     <a href="/create_question" id="new_question">New Question</a>
-    2Fast4U Voting
-    <a href="/logout" id="logout" > Logout</a></header>
+  <span id="nombre">2Fast4U Voting</span>
+    <a href="/logout" id="logout" > Logout</a>
+
+</div>
+
+<div class="content">
+    <!--mi codigo va aqui-->
+            <div id = "questions">
+                  <h2> Current Question: </h2>
+                    {% for as in a %}
+                    <form action="/home_admin" method="post">
+                       <button class = "current_question" id="current_question" value="{{as.get('question_title')}}"> {{as.get("question_title")}} </button><br><br>
+                      <input type="hidden" id="cuestion1" name="question" value="{{as.get('question_title')}}" ></input>
+                    </form>
+                    <form action="/end_vote" method="post">
+                       <button class = "current_question"  name="question_id" value="{{as.get('question_id')}}"> End Vote </button><br><br>
+                    </form>
+                    <br>
+                    {% endfor %}
+
+                    <br><h2> Past Questions: </h2>
+                    {% for question in questions %}
+                    <form action="/results" method="post">
+                       <button class = "past_questions" id="past_question" value="{{question.get('question_title')}}"> {{question.get("question_title")}} </button><br><br>
+                      <input type="hidden" id="question" name="question" value="{{question.get('question_title')}}" ></input>
+                    </form>
+                    {% endfor %}
+            </div>
 
 
+</div>
 
-  <!-- Trigger/Open The Modal -->
+<script>
+window.onscroll = function() {myFunction()};
 
-  <div id = "questions">
-    <h2> Current Question: </h2>
-      {% for as in a %}
-      <form action="/home_admin" method="post">
-         <button class = "current_question" id="current_question" value="{{as.get('question_title')}}"> {{as.get("question_title")}} </button><br><br>
-        <input type="hidden" id="cuestion1" name="question" value="{{as.get('question_title')}}" ></input>
-      </form>
-      <form action="/end_vote" method="post">
-         <button class = "current_question"  name="question_id" value="{{as.get('question_id')}}"> End Vote </button><br><br>
-      </form>
-      <br>
-      {% endfor %}
+var header = document.getElementById("myHeader");
+var sticky = header.offsetTop;
 
-      <br><h2> Past Questions: </h2>
-      {% for question in questions %}
-      <form action="/results" method="post">
-         <button class = "past_questions" id="past_question" value="{{question.get('question_title')}}"> {{question.get("question_title")}} </button><br><br>
-        <input type="hidden" id="question" name="question" value="{{question.get('question_title')}}" ></input>
-      </form>
-      {% endfor %}
-
-
-  </div>
-
-  <!-- The Modal -->
-  <div id = "currentModal" class = "modal">
-
-    <!-- Modal content -->
-    <div class = "modal-content">
-
-      <div class = "modal-header">
-        <span class = "close"> &times </span>
-        <h2> Voting Prompt </h2>
-      </div>
-
-      <div class = "modal-body">
-        <p id = "question_name"> </p>
-        <p id = "question_type"> </p>
-        <p> <button id = "Yes"> Yes </button>
-        <button id = "No"> No  </button>
-        <button id = "Abstained"> Abstained </button> </p>
-
-    <button id = "Results"> Results </button>
-      </div>
-
-    </div>
-  </div>
-
-  <footer>
-     <p> {% if current_user.is_authenticated %}
-            Welcome: {{ current_user.email }}
-        {% endif %} </p>
-  </footer>
-
-
+function myFunction() {
+  if (window.pageYOffset >= sticky) {
+    header.classList.add("sticky");
+  } else {
+    header.classList.remove("sticky");
+  }
+}
+</script>
 
 </body>
-  
 </html>

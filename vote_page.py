@@ -8,21 +8,20 @@ DB = DBHelper()
 @login_required
 def vote_page():
     group_name = "prueba01"
+
     titulo = request.form.get('current_question')
-    a = get_in_progress_question1(group_name,titulo)
+    print titulo
+    a = get_in_progress_question1(group_name, titulo )
 
-
-    descripcion=a.get('question_description')
-    autor= a.get('question_author')
-    fecha=a.get('question_date')
-    tipo=a.get('question_type')
-
+    descripcion = a.get('question_description')
+    autor = a.get('question_author')
+    fecha = a.get('question_date')
+    tipo = a.get('question_type')
 
     # esto es solo para testing
     # voto = request.form.get("myText")
     # if None != voto:
     #     print (voto)
-
 
 
     return render_template("html/voting_page.html",titulo=titulo, descripcion=descripcion,
