@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, g
-from flask_login import login_required, LoginManager
+from flask_login import login_required, LoginManager, current_user
 from mockdbhelper import MockDBHelper as DBHelper
-from dbhandler import get_in_progress_question, get_CompletedQuestion, get_in_progress_question1
+from dbhandler import get_in_progress_question, get_CompletedQuestion, get_in_progress_question1, get_user_has_vote
 
 DB = DBHelper()
 # User Account
@@ -17,14 +17,19 @@ def vote_page():
     autor = a.get('question_author')
     fecha = a.get('question_date')
     tipo = a.get('question_type')
-
+    yavotaste= request.form.get('yavotastes')
     # esto es solo para testing
     # voto = request.form.get("myText")
     # if None != voto:
     #     print (voto)
+    yavoto = get_user_has_vote(current_user.email, titulo)
+    if yavoto != None :
+        yavotaste = "si"
+    else:
+        yavotaste = "no"
 
 
-    return render_template("html/voting_page.html",titulo=titulo, descripcion=descripcion,
+    return render_template("html/voting_page.html",yavotaste=yavotaste,titulo=titulo, descripcion=descripcion,
                            group_name=group_name, autor=autor, fecha=fecha, tipo=tipo)
 
 if __name__ == '__main__':

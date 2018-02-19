@@ -24,14 +24,14 @@ def home():
 
         yavoto = get_user_has_vote(current_user.email,pregunta)
         print yavoto
+        print "-----------"
         if yavoto == None or (yavoto["voting_id"] ==  None and yavoto['question_title'] == None) :
             vote = {'voting_id':current_user.email, 'question_id':current_question['question_id'], 'group_name':"prueba01",
             'question_title':pregunta, 'question_type':tipo, 'voting_choice':voto}
             set_vote(vote)
-        else:
-            return "Ya voto"
-    else:
-        print "No voto"
+
+
+
 
     return render_template("html/voting_home.html", questions=questions,a=a ,current_question = get_in_progress_question(group_name))
 

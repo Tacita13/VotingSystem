@@ -113,7 +113,14 @@
     </tr>
 
 <form action="/home" method="post">
-    <button name="envivar" id="enviar" onclick=check()> ENVIAR</button>
+    {% if yavotaste == "si" %}
+
+        <button name="envivar" id="enviar" onclick=check()> Ya votaste</button>
+
+        {% else %}
+        <button name="envivar" id="enviar" onclick=check()>SEND</button>
+
+        {% endif %}
     <input type="hidden" id="myText" name="myText" value=" " ></input>
     <input type="hidden" id="titulo" name="titulo" value="{{titulo}}">
     <input type="hidden" id="tipo" name="tipo" value="{{tipo}}">
