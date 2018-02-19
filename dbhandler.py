@@ -39,7 +39,7 @@ class DBHandler:
 
     def setUser(self,user):
         query ="INSERT INTO `User` VALUES " \
-                 "('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')" % \
+                 "('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', %s)" % \
                  (user.get('user_id'), user.get('username'),user.get('name'),
                   user.get('last_name'),user.get('user_type'), user.get('password'),
                   user.get('email'), user.get('student_number'), user.get('date_created'))
