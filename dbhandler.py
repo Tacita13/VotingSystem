@@ -10,10 +10,10 @@ cred = os.environ["CLEARDB_DATABASE_URL"]
 creds = re.split('[/:@?]+', cred)
 
 # Add Credentials for testing
-userDB = creds[1]
-passwordDB = creds[2]
-hostDB = creds[3]
-databaseDB = creds[5]
+userDB = creds[1].encode('ascii','ignore')
+passwordDB = creds[2].encode('ascii','ignore')
+hostDB = creds[3].encode('ascii','ignore')
+databaseDB = creds[4].encode('ascii','ignore')
 portDB = "3306"
 
 class DBHandler:
