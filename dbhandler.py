@@ -13,7 +13,7 @@ creds = re.split('[/:@?]+', cred)
 userDB = creds[1][:14]
 passwordDB = creds[2]
 hostDB = creds[3]
-databaseDB = creds[4]
+databaseDB = creds[4][:22]
 portDB = "3306"
 
 class DBHandler:
