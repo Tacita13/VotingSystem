@@ -15,5 +15,4 @@ class PasswordHelper:
         print("current :%s" % self.get_hash(plain)[:len(expected)])
         print("expected:%s" % expected)
         print("expected:%s" % type(expected))
-        print("expected:%s" % expected.decode("utf-8"))
         return self.get_hash(plain)[:len(expected)] == expected.decode("utf-8")
