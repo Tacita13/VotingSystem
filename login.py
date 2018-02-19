@@ -25,7 +25,8 @@ def login():
         print("User Valid")
         user = User(username)
         login_user(user)
-        user_type = get_user_type(username).decode("utf-8")
+        user_type = get_user_type(username)
+        print("user_type: %s %s" % (user_type, type(user_type)))
         if user_type is None:
             return loginPage(error="Invalid User")
         elif user_type['user_type'] == "Staff":
@@ -48,7 +49,7 @@ def validateLogin(username, password):
         user = users.pop()
         print("user: %s" % user)
         print("pass: %s" % password)
-        if user and PH.validate_password(password, user['password'].decode("utf-8")):
+        if user and PH.validate_password(password, user['password']):
             answer = True
     return answer
 
