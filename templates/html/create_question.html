@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>2Fast4U Voting System</title>
+
+
+      <link rel="stylesheet" href="{{url_for('static', filename='css/login-style.css') }}">
+      <link href = "{{url_for('static', filename='css/voting_home_admin.css') }}" rel = "stylesheet"  type = "text/css"> </head>
+
+
+</head>
+<body><div class="header" id="myHeader">
+  <a href="/home_admin" id="goHome">Go Home</a>
+    <a href="/create_question" id="new_question">New Question</a>
+  <span id="nombre">2Fast4U Voting</span>
+    <a href="/logout" id="logout" > Logout</a>
+</div>
+ <!--<header><a href="/home_admin" id="attendance">Go home</a>-->
+    <!--<a href="/create_question" id="new_question">New Question</a>-->
+    <!--2Fast4U Voting-->
+    <!--<a href="/logout" id="logout" > Logout</a></header>-->
+
+
+<div class="content">
+    <!--mi codigo va aqui-->
+            <div id = "questions">
+  <div class="login-page">
+  <div class="form" >
+      <form class="login-form" method="POST" >
+      <input type="text" name="formulator" placeholder="Formulator"/>
+          <h5 id="error"><p>{{text1}}</p></h5>
+      <input type="text" name="question_type" placeholder="Question type"/>
+          <h5><p id="error">{{text2}}</p></h5>
+      <input type="text" name="question" placeholder="Question"/>
+          <h5><p id="error">{{text3}}</p></h5>
+      <input type="text" name="question_description" placeholder="Question description"/>
+          <h5><p id="error">{{text4}}</p></h5>
+      <input type="text" name="question_author" placeholder="Staff name"/>
+          <h5><p id="error">{{text5}}</p></h5>
+      <button >create</button>
+           <p> {{error}}</p>
+       </form>
+
+  </div>
+
+</div>
+            </div>
+</div>
+  <script src="{{url_for('static', filename='js/jquery.min.js') }}"></script>
+
+    <script  src="{{url_for('static', filename='js/login-js.js') }}"></script>
+<style>
+
+
+
+
+</style>
+</body>
+
+</html>

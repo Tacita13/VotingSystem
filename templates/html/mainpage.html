@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en" >
 <head>
@@ -12,17 +14,36 @@
 
 
 
-  <div class="form">
-  <div class="change">The 2Fast4U Voting is a voting web application that helps
-            facilitate operations for council meetings. The web application will
-            control questions and keep a rally of the answers. Press the continue option
-            to proceed to login or register. If you have not registered, you will be asked to
-            confirm your email by entering a code sent to your email.</>
-            This is an electronic voting system, that will help to facilitate
-            voting operations for meetings. The web application
+  <div class="main">  <img src="{{url_for('static', filename='img/VotingLogo.jpg') }}" width="412px" height="205px">
+    <p class="login-form"><a href="/loginPage"><button>Login or Register</button></a></p>
+  <br>
 
-
-    <p class="message"><a href="/loginPage">Continue</a></p>
+    The 2Fast4U Voting is a voting web application that helps facilitate operations for meetings.
+    The web application will control questions and keep a rally of the answers.
+    <br>
+    <b>To use the application:</b>
+    <br>
+    1. Touch the question you want to do operations on.
+    <br>
+    2. If you choose old questions, the quesiton with the results and extra information will
+        be displayed.
+    <br>
+    3. If you choose the current question, you will be presented with the option to vote yes, no or
+        abstained.
+    <br>
+    <b>To proceed:</b>
+    <br>
+    1. Touch the login/register option.
+    <br>
+    2. If you have not registered, choose the register option and enter your information. Later,
+        a code will be sent to your email to confirm it. Once entered, you will be sent to
+        the Home page and you may proceed to use the application.
+        <br>
+    3. You may <b>not</b> proceed further into the application if you have not confirmed your email.
+    <br>
+    3. If already registered, once you enter your credentials you will be sent to the Home page
+       and you may proceed to use the application.
+       <br>
 
 </form>
 </div>

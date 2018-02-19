@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title> 2Fast4U Voting </title>
+    <link href = "{{url_for('static', filename='css/voting_home.css') }}" rel = "stylesheet"  type = "text/css">
+<style>
+body {
+  margin: 0;
+  font-family: sans-serif;
+}
+
+.top-container {
+  background-color: #f1f1f1;
+  padding: 30px;
+  text-align: center;
+}
+
+.header {
+  padding: 30px;
+  padding-top: 10px;
+  background: #F40408;
+  color: #f1f1f1;
+}
+
+.content {
+  padding: 16px;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.sticky + .content {
+  padding-top: 102px;
+}
+/* The container */
+.container {
+    display: block;
+
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.container input:checked ~ .checkmark {
+    background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container .checkmark:after {
+ 	top: 9px;
+	left: 9px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
+}
+#pregunta {
+    position: fixed;
+    top : 10%;
+    left: 50%;
+    margin-top: 0px;
+    margin-left: -300px;
+}
+</style>
+<body>
+  <!--<header>  <a href="/home" id="goHome">Go home</a> 2Fast4U Voting <a href="/logout" id="logout" > Logout</a></header>-->
+            <div class="header" id="myHeader">
+            <a href="/home" id="goHome" > Go Home</a>
+             <span id="nombre">2Fast4U Voting</span>
+             <a href="/logout" id="logout" > Logout</a>
+            </div>
+  <div class="content">
+    <!--mi codigo va aqui-->
+            <div id = "questions">
+
+<div id="pregunta">
+    <h1>Pregunta: {{titulo}}</h1>
+    <h3>Tipo:     {{tipo}}</h3>
+    <h3>Descripcion:{{descripcion}}</h3>
+    <h3>Autor:    {{autor}}</h3>
+    <h3>Fecha:     {{fecha}}</h3>
+
+    <tr>
+        <td><label class="container">SI
+          <input type="radio" id="si" checked="checked" name="radio">
+          <span class="checkmark"></span></td>
+        <td></label>
+        <label class="container">NO
+            <input type="radio" id="no"  name="radio">
+          <span class="checkmark"></span>
+        </label></td>
+        <td>
+            <label class="container">ABSTENIDO
+          <input type="radio" id="abtenido"  name="radio">
+          <span class="checkmark"></span>
+        </label>
+        </td>
+    </tr>
+
+<form action="/home" method="post">
+    {% if yavotaste == "si" %}
+
+        <button name="envivar" id="enviar" onclick=check()> Ya votaste</button>
+
+        {% else %}
+        <button name="envivar" id="enviar" onclick=check()>SEND</button>
+
+        {% endif %}
+    <input type="hidden" id="myText" name="myText" value=" " ></input>
+    <input type="hidden" id="titulo" name="titulo" value="{{titulo}}">
+    <input type="hidden" id="tipo" name="tipo" value="{{tipo}}">
+</form>
+</div>
+
+            </div>
+  </div>
+
+
+<script>
+    function check(){
+        if(document.getElementById('si').checked) {
+            var a = "yes";
+            document.getElementById("myText").value = a;
+            }else if(document.getElementById('no').checked) {
+            var a = "no";
+            document.getElementById("myText").value = a;
+          //Female radio button is checked
+        }else{
+            var a = "abstain";
+            document.getElementById("myText").value = a;
+         }
+         }
+
+
+</script>
+</body>
+</html>

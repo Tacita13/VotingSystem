@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+    <title> Tutorial </title>
+    <link href = "{{url_for('static', filename='css/voting_home_admin.css') }}" rel = "stylesheet"  type = "text/css">
+
+<body>
+<div class="header" id="myHeader">
+  <a href="/home_admin" id="goHome">Go Home</a>
+    <a href="/create_question" id="new_question">New Question</a>
+  <span id="nombre">2Fast4U Voting</span>
+    <a href="/logout" id="logout" > Logout</a>
+</div>
+
+    <div class="content">
+        <div id="qeustion">
+            <div id="att">
+            <h1>{{group_name}}</h1>
+            <h2>Add Users</h2>
+            <form action="/attendance_submit" method="post">
+                {% for user in users_add %}
+                  <input type="checkbox" name="user" value="{{user.get('username')}}">{{user.get('username')}} {{user.get('student_number')}}<br>
+                {% endfor %}
+                <input type="submit" value="Add">
+            </form>
+            <br>
+            <h2>Delete Users</h2>
+            <form action="/attendance_delete" method="post">
+                {% for user in users_delete %}
+                  <input type="checkbox" name="user" value="{{user.get('username')}}">{{user.get('username')}} {{user.get('student_number')}}<br>
+                {% endfor %}
+                <input type="submit" value="Delete">
+            </form>
+            <br>
+            <form action="/home_admin" method="post">
+                <button> Done  </button>
+            </form>
+
+        </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<style>
+
+#att {
+    position: fixed;
+    top : 10%;
+    left: 50%;
+    margin-top: 0px;
+    margin-left: -175px;
+}
+
+</style>

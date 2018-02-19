@@ -1,49 +1,51 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_login import login_user, logout_user
-from mockdbhelper import MockDBHelper as DBHelper
 from user import User
 from passwordhelper import PasswordHelper
-from index import index
-
+from dbhandler import get_user, get_user_type, has_permission
 PH = PasswordHelper()
-DB = DBHelper()
+
 
 
 def loginPage(error=""):
-    return render_template("html/login.html" , error=error)
-
-def register_page():
-    return render_template("register.html")
-
-# Stores user info in DB and returns to index.
-def register():
-    email = request.form.get("email")
-    pw1 = request.form.get("password")
-    pw2 = request.form.get("password2")
-    if not pw1 == pw2:
-        return redirect(url_for('register_page'))
-    if DB.get_user(email):
-        return redirect(url_for('register_page'))
-    salt = PH.get_salt()
-    hashed = PH.get_hash(pw1 + salt)
-    DB.add_user(email, salt, hashed)
-    return redirect(url_for('index'))
-
+    return render_template("html/login.html", error=error)
 
 def logout():
     logout_user()
     return redirect(url_for("loginPage"))
 
+
 def login():
-    email = request.form.get("username")
+    group_name = "prueba01"
+    username = request.form.get("username")
     password = request.form.get("password")
-    stored_user = DB.get_user(email)
-    if stored_user and PH.validate_password(password, stored_user['salt'], stored_user['hashed']):
-        user = User(email)
-        login_user(user)
-        return redirect(url_for('home'))
     error = "Invalid User"
+    if validateLogin(username, password):
+        user = User(username)
+        login_user(user)
+        user_type = get_user_type(username)
+        if user_type is None:
+            return loginPage(error="Invalid User")
+        elif user_type['user_type'] == "Staff":
+            return redirect(url_for('home_admin'))
+        else:
+            permission = has_permission(username, group_name)
+            if len(permission):
+                return redirect(url_for('home'))
+            else:
+                logout_user()
+                error = "Access Denied"
     return loginPage(error=error)
+
+
+def validateLogin(username, password):
+    users = get_user(username)
+    answer = False
+    if users:
+        user = users.pop()
+        if user and PH.validate_password(password, user['password'].encode('ascii', 'ignore')):
+            answer = True
+    return answer
 
 if __name__ == '__main__':
     app = Flask(__name__)
