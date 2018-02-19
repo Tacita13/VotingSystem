@@ -6,7 +6,7 @@ import re
 PH = PasswordHelper()
 
 # Comment this part for testing
-cred = os.environ["DATABASE_URL"]
+cred = os.environ["CLEARDB_DATABASE_URL"]
 creds = re.split('[/:@?]+', cred)
 
 # Add Credentials for testing
