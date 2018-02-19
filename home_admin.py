@@ -6,7 +6,6 @@ from random import randint
 # User Account
 @login_required
 def home_admin():
-    print("Esto es una prueba")
     type = get_user_type(current_user.email)
     if type["user_type"] == "Staff":
         pass

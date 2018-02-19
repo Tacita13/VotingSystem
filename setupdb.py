@@ -97,4 +97,4 @@ user = {'user_id': 1, 'username': "admin", 'name': "admin",
         'last_name': 'B', 'user_type': 'Staff', 'password': PH.get_hash('1')[:30],
         'email': "admin.com", 'student_number': '801-15-9203', 'date_created': '2018-10-28 12:00:10'}
 set_user(user,  user=userDB , password=passwordDB, host=hostDB, database=databaseDB, port=portDB)
-print get_user("admin",  user=userDB , password=passwordDB, host=hostDB, database=databaseDB, port=portDB)
+get_user("admin",  user=userDB , password=passwordDB, host=hostDB, database=databaseDB, port=portDB)
