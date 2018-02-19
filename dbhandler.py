@@ -36,6 +36,7 @@ class DBHandler:
 
     def getUser(self,username, password=""):
         query = 'SELECT * FROM User WHERE username="%s"' % username
+        print(query)
         return self.executeGetQuery(query)
 
     def getUserType(self,username, password=""):
@@ -211,6 +212,7 @@ class DBHandler:
 
 
 def get_user(username, user=userDB , password=passwordDB, host=hostDB, database=databaseDB, port=portDB):
+    print("Username: %s, user:%s, password=%s, host=%s, database=%s, port=%s" % (username, userDB , passwordDB, hostDB, databaseDB, portDB))
     DB = DBHandler(user=user, password=password, host=host, database=database, port= port)
     DB.connect()
     user = DB.getUser(username)
