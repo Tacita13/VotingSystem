@@ -1,12 +1,20 @@
 import mysql.connector
 from passwordhelper import PasswordHelper
+import os
+import re
+
 PH = PasswordHelper()
 
-userDB = ""
-passwordDB = ""
-hostDB = ""
-databaseDB = ""
-portDB = ""
+# Comment this part for testing
+cred = os.environ["DATABASE_URL"]
+creds = re.split('[/:@?]+', cred)
+
+# Add Credentials for testing
+userDB = creds[1]
+passwordDB = creds[2]
+hostDB = creds[3]
+databaseDB = creds[5]
+portDB = "3306"
 
 class DBHandler:
     def __init__(self, user, password, host, database, port):
