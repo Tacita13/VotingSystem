@@ -1,9 +1,7 @@
-from flask import Flask, render_template, request, g
+from flask import Flask, render_template, request
 from flask_login import login_required, LoginManager
-from mockdbhelper import MockDBHelper as DBHelper
-from dbhandler import get_in_progress_question, get_CompletedQuestion, get_in_progress_question1
+from dbhandler import get_in_progress_question1
 
-DB = DBHelper()
 # User Account
 @login_required
 def vote_page():
