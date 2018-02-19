@@ -20,7 +20,9 @@ def login():
     username = request.form.get("username")
     password = request.form.get("password")
     error = "Invalid User"
+    print("Validating User")
     if validateLogin(username, password):
+        print("User Valid")
         user = User(username)
         login_user(user)
         user_type = get_user_type(username)
@@ -35,6 +37,7 @@ def login():
             else:
                 logout_user()
                 error = "Access Denied"
+    print("Invalid User")
     return loginPage(error=error)
 
 
@@ -43,6 +46,8 @@ def validateLogin(username, password):
     answer = False
     if users:
         user = users.pop()
+        print("user: %s" % user)
+        print("pass: %s" % password)
         if user and PH.validate_password(password, user['password'].encode('ascii', 'ignore')):
             answer = True
     return answer
