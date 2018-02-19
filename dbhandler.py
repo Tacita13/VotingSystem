@@ -252,6 +252,9 @@ def set_user(user_query, user=userDB , password=passwordDB, host=hostDB, databas
     # Return True if successful or False otherwise.
     output = DB.setUser(user_query)
     DB.disconnect_set()
+    print("set_user")
+    print("user: %s" % user_query)
+    print("output %s" % output)
     return output
 
 def set_confirmation(confirmation, user=userDB , password=passwordDB, host=hostDB, database=databaseDB, port=portDB):
