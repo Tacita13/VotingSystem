@@ -21,9 +21,11 @@ def home_admin():
 
     voto = request.form.get("myText")
     if None != voto:
-        print (voto)
+        # print (voto)
+        pass
     else:
-        print "No hay nada"
+        pass
+        # print "No hay nada"
 
 
     return render_template("html/voting_home_admin.html", questions=questions, a=a,
@@ -39,7 +41,7 @@ def end_vote():
         yes = get_voteCount(group_name, question_id, "Yes")['vote_count']
         no = get_voteCount(group_name, question_id, "No")['vote_count']
         abstain = get_voteCount(group_name, question_id, "Abstain")['vote_count']
-        print (yes,no,abstain)
+        # print (yes,no,abstain)
         result = {'result_id': randint(1, 100), 'question_id': question_id, 'question_title': question['question_title'],
                   'question_type': question['question_type'], 'group_name': group_name, 'count_yes': yes,
                   'count_no': no, 'count_abstain': abstain, 'total_voters': int(yes) + int(no) + int(abstain)}

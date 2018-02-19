@@ -10,5 +10,5 @@ def results():
     group_name = "prueba01"
     question_id = request.form.get("question")
     question_dict = get_Result(question_id)
-    print question_dict
+    # print question_dict
     return render_template("html/results.html", question=question_dict['question_title'], question_dict=question_dict, user_type=user_type)

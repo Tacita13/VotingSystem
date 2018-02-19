@@ -23,7 +23,8 @@ def attendance_submit():
         permission = {'permission_id': randint(1, 100), 'group_id': 1, 'username': user,
                       'permission_creator': current_user.email, 'group_name': group_name}
         if not set_groupPermission(permission):
-            print permission
+            # print permission
+            pass
     return redirect(url_for('attendance'))
 
 def attendance_delete():
@@ -31,7 +32,8 @@ def attendance_delete():
     users = request.form.getlist('user')
     for user in users:
         if not delete_Permission(user, group_name):
-            print user
+            # print user
+            pass
     return redirect(url_for('attendance'))
 
 

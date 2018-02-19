@@ -9,7 +9,7 @@ def vote_page():
     group_name = "prueba01"
 
     titulo = request.form.get('current_question')
-    print titulo
+    # print titulo
     a = get_in_progress_question1(group_name, titulo )
 
     descripcion = a.get('question_description')

@@ -94,38 +94,6 @@ body {
 #attendance {
 position: left; }
 
-body {
-  margin: 0;
-  font-family: sans-serif;
-}
-
-.top-container {
-  background-color: #f1f1f1;
-  padding: 30px;
-  text-align: center;
-}
-
-.header {
-  padding: 30px;
-  padding-top: 10px;
-  background: #F40408;
-  color: #f1f1f1;
-}
-
-.content {
-  padding: 16px;
-}
-
-.sticky {
-  position: fixed;
-  top: 0;
-  width: 100%;
-}
-
-.sticky + .content {
-  padding-top: 102px;
-}
-
 .form {
     display: block ;
 }

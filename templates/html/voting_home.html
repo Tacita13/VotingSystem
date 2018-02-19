@@ -4,6 +4,40 @@
 <title> 2Fast4U Voting </title>
 <link href = "{{url_for('static', filename='css/voting_home.css') }}" rel = "stylesheet"  type = "text/css"></head>
 </head>
+<style>
+    body {
+  margin: 0;
+  font-family: sans-serif;
+}
+
+.top-container {
+  background-color: #f1f1f1;
+  padding: 30px;
+  text-align: center;
+}
+
+.header {
+  padding: 30px;
+  padding-top: 10px;
+  background: #F40408;
+  color: #f1f1f1;
+}
+
+.content {
+  padding: 16px;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.sticky + .content {
+  padding-top: 102px;
+}
+
+</style>
 <body>
 <div class="header" id="myHeader">
   <span id="nombre">2Fast4U Voting</span>

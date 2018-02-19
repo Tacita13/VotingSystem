@@ -23,8 +23,8 @@ def home():
         current_question = get_in_progress_question1(group_name,pregunta)
 
         yavoto = get_user_has_vote(current_user.email,pregunta)
-        print yavoto
-        print "-----------"
+        # print yavoto
+        # print "-----------"
         if yavoto == None or (yavoto["voting_id"] ==  None and yavoto['question_title'] == None) :
             vote = {'voting_id':current_user.email, 'question_id':current_question['question_id'], 'group_name':"prueba01",
             'question_title':pregunta, 'question_type':tipo, 'voting_choice':voto}
