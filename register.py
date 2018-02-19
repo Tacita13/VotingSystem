@@ -7,7 +7,7 @@ from random import randint
 
 PH = PasswordHelper()
 
-def validateRegister(username, name, email, password):
+def validateRegister(username, name,last_name, email, password):
 
     id = get_user_idx()
     newId = randint(1, 100)
@@ -19,8 +19,8 @@ def validateRegister(username, name, email, password):
 
 
     user = {'user_id': set_it, 'username': username, 'name': name,
-             'last_name': 'B', 'user_type': 'Student', 'password': PH.get_hash(password),
-             'email': email, 'student_number': '801-15-'+str(newId1), 'date_created': '2018-10-28 12:00:10'}
+             'last_name': last_name, 'user_type': 'Student', 'password': PH.get_hash(password),
+             'email': email, 'student_number': '801-15-'+str(newId1), 'date_created': 'CURRENT_DATE()'}
 
     return set_user(user)
 
@@ -29,6 +29,7 @@ def validateRegister(username, name, email, password):
 def register():
     username= request.form.get("username")
     name = request.form.get("name")
+    last_name = request.form.get("last_name")
     email = request.form.get("email")
     pw1 = request.form.get("password")
     pw2 = request.form.get("password2")
@@ -36,7 +37,7 @@ def register():
         return redirect(url_for('loginPage')) #Passwords provided are not equal.
     if get_user(username):
         return redirect(url_for('loginPage')) #User already registered.
-    if validateRegister(username, name, email, pw1):
+    if validateRegister(username, name,last_name, email, pw1):
         return redirect(url_for('loginPage')) #User Successfully Registered
     else:
         return redirect(url_for('loginPage')) #Could not register user.
