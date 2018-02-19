@@ -52,14 +52,14 @@
     {% for question in a %}
      <form action="/vote_page" method="post">
          <button id="current_question1" value="{{question.get('question_title')}}"> {{question.get("question_title")}} </button><br><br>
-        <input type="hidden" id="current_question" name="current_question" value="{{question.get('question_title')}}" ></input>
+        <input type="hidden" id="current_question" name="current_question" value="{{question.get('question_title')}}" >
       </form>
     {% endfor %}
       <br><h2> Past Questions: </h2>
       {% for question in questions %}
       <form action="/results" method="post">
          <button class = "past_questions" id="past_question" value="{{question.get('question_id')}}"> {{question.get("question_title")}} </button><br><br>
-        <input type="hidden" id="question" name="question" value="{{question.get('question_id')}}" ></input>
+        <input type="hidden" id="question" name="question" value="{{question.get('question_id')}}" >
       </form>
       {% endfor %}
 

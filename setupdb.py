@@ -1,4 +1,4 @@
-from dbhandler import set_question, set_userTable, set_user, get_user
+from dbhandler import set_question, set_userTable, set_user, get_user, set_Table
 from passwordhelper import PasswordHelper as PH
 
 # SQL commands
@@ -84,8 +84,17 @@ insert_table = "INSERT INTO `User` (`user_id`, `username`, `name`, `last_name`, 
 getUser = 'SELECT * FROM User WHERE username="TheDoctor"'
 insert_user = "INSERT INTO `User` (`user_id`, `username`, `name`, `last_name`, `user_type`, `password`, `email`, `student_number`, `date_created`) VALUES ('512f0f02-0', 'TheDoctor', 'NoOne', 'Knows', 'Staff', 'SaraJane', 'testsubject1@gmail.com', '801-44-7821', '2018-01-28 12:00:10')"
 
+# mysql://b378fe5bb2d0c7:7893c4d2@us-cdbr-iron-east-05.cleardb.net/heroku_436014a1a92c4f5?reconnect=true
+
+userDB = "b378fe5bb2d0c7"
+passwordDB = "7893c4d2"
+hostDB = "us-cdbr-iron-east-05.cleardb.net"
+databaseDB = "heroku_436014a1a92c4f5"
+portDB = "3306"
+#set_Table(createUser, user=userdb , password=password, host=host, database=database, port=port)
 PH = PH()
 user = {'user_id': 1, 'username': "admin", 'name': "admin",
-        'last_name': 'B', 'user_type': 'Staff', 'password': PH.get_hash('1'),
+        'last_name': 'B', 'user_type': 'Staff', 'password': PH.get_hash('1')[:30],
         'email': "admin.com", 'student_number': '801-15-9203', 'date_created': '2018-10-28 12:00:10'}
-set_user(user)
+set_user(user,  user=userDB , password=passwordDB, host=hostDB, database=databaseDB, port=portDB)
+print get_user("admin",  user=userDB , password=passwordDB, host=hostDB, database=databaseDB, port=portDB)

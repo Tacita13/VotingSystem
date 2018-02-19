@@ -11,10 +11,8 @@ from voting import voting
 from results import results
 from create_question import create_question
 from attendance import attendance, attendance_submit, attendance_delete
-
-
 from vote_page import vote_page
-#from results import results
+
 
 app = Flask(__name__)
 login_manager = LoginManager(app)
@@ -47,4 +45,4 @@ def load_user(user_id):
     return answer
 
 if __name__ == "__main__":
-    app.run(port=5000, debug=True, host="192.168.0.6")
+    app.run(port=5000, debug=True)

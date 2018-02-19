@@ -2,6 +2,11 @@ import mysql.connector
 from passwordhelper import PasswordHelper
 PH = PasswordHelper()
 
+userDB = ""
+passwordDB = ""
+hostDB = ""
+databaseDB = ""
+portDB = ""
 
 class DBHandler:
     def __init__(self, user, password, host, database, port):
@@ -17,6 +22,9 @@ class DBHandler:
         self.cnx = mysql.connector.connect(user=self.user, password=self.password,
                               host=self.host, database=self.database, port=self.port)
         self.cursor = self.cnx.cursor(dictionary=True)
+
+    def setTable(self, table):
+        return self.executeSetQuery(table)
 
     def getUser(self,username, password=""):
         query = 'SELECT * FROM User WHERE username="%s"' % username
@@ -42,7 +50,8 @@ class DBHandler:
                  "('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', %s)" % \
                  (user.get('user_id'), user.get('username'),user.get('name'),
                   user.get('last_name'),user.get('user_type'), user.get('password'),
-                  user.get('email'), user.get('student_number'), user.get('date_created'))
+                  user.get('email'), user.get('student_number'), 'CURRENT_DATE()')
+        print query
         return self.executeSetQuery(query)
 
     def setCode(self,confirmation):
@@ -54,9 +63,9 @@ class DBHandler:
 
     def setGroup(self, group):
         query = "INSERT INTO `Create_Group` VALUES " \
-                "('%s', '%s', '%s', '%s','%s')" % \
+                "('%s', '%s', '%s', '%s',%s)" % \
                 (group.get('group_id'), group.get('user_id'), group.get('group_creator'),
-                 group.get('group_name'), group.get('date_created'))
+                 group.get('group_name'), 'CURRENT_DATE()')
         return self.executeSetQuery(query)
 
     def getGroup(self,group_name):
@@ -90,11 +99,11 @@ class DBHandler:
 
     def setQuestion(self, question):
         query = "INSERT INTO `Question` VALUES " \
-                "('%s', '%s', '%s', '%s','%s','%s', '%s', '%s', '%s','%s')" % \
+                "('%s', '%s', '%s', '%s','%s','%s', '%s', '%s', '%s',%s)" % \
                 (question.get('question_id'), question.get('user_id'), question.get('group_name'),
                  question.get('question_creator'), question.get('question_type'), question.get('question_title'),
                  question.get('question_description'),question.get('voting_status'),question.get('question_author'),
-                 question.get('date_created'))
+                 'CURRENT_DATE()')
         return self.executeSetQuery(query)
 
     def updateQuestion(self, question_id, group_name):
@@ -193,7 +202,8 @@ class DBHandler:
         self.cursor.close()
         self.cnx.close()
 
-def get_user(username, user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306'):
+
+def get_user(username, user=userDB , password=passwordDB, host=hostDB, database=databaseDB, port=portDB):
     DB = DBHandler(user=user, password=password, host=host, database=database, port= port)
     DB.connect()
     user = DB.getUser(username)
@@ -204,7 +214,7 @@ def get_user(username, user='root', password='root', host='localhost', database=
     DB.disconnect_get()
     return output
 
-def get_AllUserStudent( user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306'):
+def get_AllUserStudent( user=userDB , password=passwordDB, host=hostDB, database=databaseDB, port=portDB):
     DB = DBHandler(user=user, password=password, host=host, database=database, port= port)
     DB.connect()
     user = DB.getAllUserStudent()
@@ -216,7 +226,7 @@ def get_AllUserStudent( user='root', password='root', host='localhost', database
     return output
 
 
-def get_user_type(username, user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306'):
+def get_user_type(username, user=userDB , password=passwordDB, host=hostDB, database=databaseDB, port=portDB):
     DB = DBHandler(user=user, password=password, host=host, database=database, port= port)
     DB.connect()
     user = DB.getUserType(username)
@@ -227,31 +237,33 @@ def get_user_type(username, user='root', password='root', host='localhost', data
     return output
 
 
-def set_user(user):
-    DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')
+def set_user(user_query, user=userDB , password=passwordDB, host=hostDB, database=databaseDB, port=portDB):
+    print user
+    DB = DBHandler(user=user, password=password, host=host, database=database, port=port)
     DB.connect()
     # Return True if successful or False otherwise.
-    output = DB.setUser(user)
+    print user_query
+    output = DB.setUser(user_query)
     DB.disconnect_set()
     return output
 
-def set_confirmation(confirmation):
-    DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')
+def set_confirmation(confirmation, user=userDB , password=passwordDB, host=hostDB, database=databaseDB, port=portDB):
+    DB = DBHandler(user=user, password=password, host=host, database=database, port=port)
     DB.connect()
     # Return True if successful or False otherwise.
     output = DB.setUser(confirmation)
     DB.disconnect_set()
     return output
 
-def set_question(question):
-    DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')
+def set_question(question, user=userDB , password=passwordDB, host=hostDB, database=databaseDB, port=portDB):
+    DB = DBHandler(user=user, password=password, host=host, database=database, port=port)
     DB.connect()
     # Return True if successful or False otherwise.
     output = DB.setQuestion(question)
     DB.disconnect_set()
     return output
 
-def set_userTable(query, user, password, host, database, port):
+def set_userTable(query, user=userDB , password=passwordDB, host=hostDB, database=databaseDB, port=portDB):
     DB = DBHandler(user=user, password=password, host=host, database=database, port=port)
     DB.connect()
     # Return True if successful or False otherwise.
@@ -259,8 +271,8 @@ def set_userTable(query, user, password, host, database, port):
     DB.disconnect_set()
     return output
 
-def get_CompletedQuestion(group_name):
-    DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')
+def get_CompletedQuestion(group_name, user=userDB , password=passwordDB, host=hostDB, database=databaseDB, port=portDB):
+    DB = DBHandler(user=user, password=password, host=host, database=database, port=port)
     DB.connect()
     user = DB.getCompletedQuestions(group_name)
     output = []
@@ -269,8 +281,8 @@ def get_CompletedQuestion(group_name):
     DB.disconnect_get()
     return output
 
-def get_Question(question_title, group_name):
-    DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')
+def get_Question(question_title, group_name, user=userDB , password=passwordDB, host=hostDB, database=databaseDB, port=portDB):
+    DB = DBHandler(user=user, password=password, host=host, database=database, port=port)
     DB.connect()
     user = DB.getQuestion(question_title, group_name)
     output = None
@@ -279,8 +291,8 @@ def get_Question(question_title, group_name):
     DB.disconnect_get()
     return output
 
-def get_QuestionByID(question_id, group_name):
-    DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')
+def get_QuestionByID(question_id, group_name, user=userDB , password=passwordDB, host=hostDB, database=databaseDB, port=portDB):
+    DB = DBHandler(user=user, password=password, host=host, database=database, port=port)
     DB.connect()
     user = DB.getQuestionByID(question_id, group_name)
     output = None
@@ -289,8 +301,8 @@ def get_QuestionByID(question_id, group_name):
     DB.disconnect_get()
     return output
 
-def get_Result(question_id):
-    DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')
+def get_Result(question_id, user=userDB , password=passwordDB, host=hostDB, database=databaseDB, port=portDB):
+    DB = DBHandler(user=user, password=password, host=host, database=database, port=port)
     DB.connect()
     user = DB.getResult(question_id)
     output = None
@@ -299,8 +311,8 @@ def get_Result(question_id):
     DB.disconnect_get()
     return output
 
-def get_user_idx():
-    DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')
+def get_user_idx(user=userDB , password=passwordDB, host=hostDB, database=databaseDB, port=portDB):
+    DB = DBHandler(user=user, password=password, host=host, database=database, port=port)
     DB.connect()
     id = DB.get_user_id()
     output = []
@@ -309,8 +321,8 @@ def get_user_idx():
     DB.disconnect_get()
     return output
 
-def get_question_idx():
-    DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')
+def get_question_idx(user=userDB , password=passwordDB, host=hostDB, database=databaseDB, port=portDB):
+    DB = DBHandler(user=user, password=password, host=host, database=database, port=port)
     DB.connect()
     id = DB.get_question_id()
 
@@ -321,8 +333,8 @@ def get_question_idx():
     return output
 
 
-def get_in_progress_question(group_name):
-    DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')
+def get_in_progress_question(group_name, user=userDB , password=passwordDB, host=hostDB, database=databaseDB, port=portDB):
+    DB = DBHandler(user=user, password=password, host=host, database=database, port=port)
     DB.connect()
     quesiton = DB.getInProgressQuestion(group_name)
     output = []
@@ -330,8 +342,8 @@ def get_in_progress_question(group_name):
         output.append(i)
     DB.disconnect_get()
     return output
-def get_in_progress_question1(group_name,titulo):
-    DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')
+def get_in_progress_question1(group_name,titulo, user=userDB , password=passwordDB, host=hostDB, database=databaseDB, port=portDB):
+    DB = DBHandler(user=user, password=password, host=host, database=database, port=port)
     DB.connect()
     quesiton = DB.getInProgressQuestion1(group_name,titulo)
     output = None
@@ -340,16 +352,16 @@ def get_in_progress_question1(group_name,titulo):
     DB.disconnect_get()
     return output
 
-def set_groupPermission(permission):
-    DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')
+def set_groupPermission(permission, user=userDB , password=passwordDB, host=hostDB, database=databaseDB, port=portDB):
+    DB = DBHandler(user=user, password=password, host=host, database=database, port=port)
     DB.connect()
     # Return True if successful or False otherwise.
     output = DB.setGroupPermission(permission)
     DB.disconnect_set()
     return output
 
-def get_addPermission(group_name):
-    DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')
+def get_addPermission(group_name, user=userDB , password=passwordDB, host=hostDB, database=databaseDB, port=portDB):
+    DB = DBHandler(user=user, password=password, host=host, database=database, port=port)
     DB.connect()
     users = DB.getAddPermission(group_name)
     output = []
@@ -358,8 +370,8 @@ def get_addPermission(group_name):
     DB.disconnect_get()
     return output
 
-def get_deletePermission(group_name):
-    DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')
+def get_deletePermission(group_name, user=userDB , password=passwordDB, host=hostDB, database=databaseDB, port=portDB):
+    DB = DBHandler(user=user, password=password, host=host, database=database, port=port)
     DB.connect()
     users = DB.getDeletePermission(group_name)
     output = []
@@ -368,16 +380,16 @@ def get_deletePermission(group_name):
     DB.disconnect_get()
     return output
 
-def delete_Permission(username, group_name):
-    DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')
+def delete_Permission(username, group_name, user=userDB , password=passwordDB, host=hostDB, database=databaseDB, port=portDB):
+    DB = DBHandler(user=user, password=password, host=host, database=database, port=port)
     DB.connect()
     # Return True if successful or False otherwise.
     output = DB.deletePermission(username, group_name)
     DB.disconnect_set()
     return output
 
-def has_permission(username, group_name):
-    DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')
+def has_permission(username, group_name, user=userDB , password=passwordDB, host=hostDB, database=databaseDB, port=portDB):
+    DB = DBHandler(user=user, password=password, host=host, database=database, port=port)
     DB.connect()
     users = DB.getUserFromPermission(username,group_name)
     output = []
@@ -386,16 +398,16 @@ def has_permission(username, group_name):
     DB.disconnect_get()
     return output
 
-def update_question(question_id, group_name):
-    DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')
+def update_question(question_id, group_name, user=userDB , password=passwordDB, host=hostDB, database=databaseDB, port=portDB):
+    DB = DBHandler(user=user, password=password, host=host, database=database, port=port)
     DB.connect()
     # Return True if successful or False otherwise.
     output = DB.updateQuestion(question_id, group_name)
     DB.disconnect_set()
     return output
 
-def get_voteCount(group_name, question_id, voting_choice):
-    DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')
+def get_voteCount(group_name, question_id, voting_choice, user=userDB , password=passwordDB, host=hostDB, database=databaseDB, port=portDB):
+    DB = DBHandler(user=user, password=password, host=host, database=database, port=port)
     DB.connect()
     quesiton = DB.getVoteCount(group_name, question_id, voting_choice)
     output = None
@@ -404,27 +416,34 @@ def get_voteCount(group_name, question_id, voting_choice):
     DB.disconnect_get()
     return output
 
-def set_result(result):
-    DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')
+def set_result(result, user=userDB , password=passwordDB, host=hostDB, database=databaseDB, port=portDB):
+    DB = DBHandler(user=user, password=password, host=host, database=database, port=port)
     DB.connect()
     # Return True if successful or False otherwise.
     output = DB.setResult(result)
     DB.disconnect_set()
     return output
 
-def set_vote(vote):
-    DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')
+def set_vote(vote, user=userDB , password=passwordDB, host=hostDB, database=databaseDB, port=portDB):
+    DB = DBHandler(user=user, password=password, host=host, database=database, port=port)
     DB.connect()
     output = DB.setVoting(vote)
     DB.disconnect_set()
     return output
 
-def get_user_has_vote(vote_id, question):
-    DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')
+def get_user_has_vote(vote_id, question, user=userDB , password=passwordDB, host=hostDB, database=databaseDB, port=portDB):
+    DB = DBHandler(user=user, password=password, host=host, database=database, port=port)
     DB.connect()
     quesiton = DB.getUserHasVote(vote_id, question)
     output = None
     for i in quesiton:
         output = i
     DB.disconnect_get()
+    return output
+
+def set_Table(table, user=userDB , password=passwordDB, host=hostDB, database=databaseDB, port=portDB):
+    DB = DBHandler(user=user, password=password, host=host, database=database, port=port)
+    DB.connect()
+    output = DB.setTable(table)
+    DB.disconnect_set()
     return output

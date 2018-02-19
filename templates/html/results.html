@@ -22,41 +22,43 @@
             <a href="/logout" id="logout" > Logout</a>
     </div>
         {% else %}
-            <div class="header" id="myHeader">
+    <div class="header" id="myHeader">
             <a href="/home" id="goHome" > Go Home</a>
              <span id="nombre">2Fast4U Voting</span>
              <a href="/logout" id="logout" > Logout</a>
-            </div>
+    </div>
         {% endif %}
 
-<div class="content">
-    <!--mi codigo va aqui-->
-            <div id = "questions">
+    <div class="content">
+        <!--mi codigo va aqui-->
+        <div id = "questions">
 
-<div id=resultado>
+            <div id=resultado>
 
-    <h1>{{question_dict.get('question_title')}}</h1>
-    <h2>Question Type: {{question_dict.get('question_type')}}</h2>
-    <h2>Description  : {{question_dict.get('question_description')}}</h2>
-    <h2>Author       : {{question_dict.get('question_author')}}</h2>
-    <h2>Date Created : {{question_dict.get('date_created')}}</h2>
-    <h2>Yes           : {{question_dict.get('count_yes')}}</h2>
-    <h2>No           : {{question_dict.get('count_no')}}</h2>
-    <h2>Abstain           : {{question_dict.get('count_abstain')}}</h2>
-    <h2>Total Voters           : {{question_dict.get('total_voters')}}</h2>
-      <br>
-    {% if user_type == "Staff" %}
-    <form action="\home_admin" method="post">
-        {% else %}
-        <form action="\home" method="post">
-        {% endif %}
+                <h1>{{question_dict.get('question_title')}}</h1>
+                <h2>Question Type: {{question_dict.get('question_type')}}</h2>
+                <h2>Description  : {{question_dict.get('question_description')}}</h2>
+                <h2>Author       : {{question_dict.get('question_author')}}</h2>
+                <h2>Date Created : {{question_dict.get('date_created')}}</h2>
+                <h2>Yes           : {{question_dict.get('count_yes')}}</h2>
+                <h2>No           : {{question_dict.get('count_no')}}</h2>
+                <h2>Abstain           : {{question_dict.get('count_abstain')}}</h2>
+                <h2>Total Voters           : {{question_dict.get('total_voters')}}</h2>
+                  <br>
+                {% if user_type == "Staff" %}
+                <form action="\home_admin" method="post">
+                    {% else %}
+                    <form action="\home" method="post">
+                    {% endif %}
 
-        <button>Done</button>
-     </form>
+                        <button>Done</button>
+                    </form>
+                    </form>
 
-</div>
             </div>
-</div>
+        </div>
+
+    </div>
 
 </body>
 
