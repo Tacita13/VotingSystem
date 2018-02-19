@@ -69,7 +69,7 @@ class DBHandler:
         return self.executeGetQuery(query)
 
     def getDeletePermission(self, group_name):
-        query = 'SELECT user.username, student_number FROM user NATURAL join group_permission ' \
+        query = 'SELECT user.username, student_number FROM user join group_permission ' \
                 'WHERE user.username = group_permission.username and group_permission.group_name ="%s"' % group_name
         return self.executeGetQuery(query)
 
@@ -132,8 +132,11 @@ class DBHandler:
                  result.get('count_abstain'), result.get('total_voters'))
         return self.executeSetQuery(query)
 
-    def getResult(self,question_title):
-        query = "SELECT * FROM Results WHERE question_title= %s" % question_title
+    def getResult(self,question_id):
+        query = 'Select Question.group_name, Question.question_creator, Question.question_type, Question.question_title,' \
+                ' Question.question_description, Question.voting_status, Question.question_author, Question.date_created, ' \
+                'Results.count_yes, Results.count_no, Results.count_abstain, Results.total_voters From Question JOIN Results ' \
+                'Where Question.question_id = Results.question_id AND results.question_id= "%s"' % question_id
         return self.executeGetQuery(query)
 
     def setVoting(self,voting):
@@ -286,6 +289,16 @@ def get_QuestionByID(question_id, group_name):
     DB.disconnect_get()
     return output
 
+def get_Result(question_id):
+    DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')
+    DB.connect()
+    user = DB.getResult(question_id)
+    output = None
+    for i in user:
+        output = i
+    DB.disconnect_get()
+    return output
+
 def get_user_idx():
     DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')
     DB.connect()
@@ -402,9 +415,10 @@ def set_result(result):
 def set_vote(vote):
     DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')
     DB.connect()
-    output = DB. setVoting(vote)
+    output = DB.setVoting(vote)
     DB.disconnect_set()
     return output
+
 def get_user_has_vote(vote_id, question):
     DB = DBHandler(user='root', password='root', host='localhost', database='upr-2fast4u-voting', port='3306')
     DB.connect()

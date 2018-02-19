@@ -1,10 +1,4 @@
 from flask import Flask, render_template
-from mockdbhelper import MockDBHelper as DBHelper
-from passwordhelper import PasswordHelper
-
-PH = PasswordHelper()
-DB = DBHelper()
-
 
 def index():
     return render_template("html/mainpage.html")

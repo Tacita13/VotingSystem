@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect
 from flask_login import login_required, LoginManager,current_user
-from dbhandler import get_Question, set_question, get_question_idx, get_user_type, get_in_progress_question, get_CompletedQuestion
+from dbhandler import  set_question, get_question_idx, get_user_type, get_in_progress_question, get_CompletedQuestion
 from random import randint
 from datetime import datetime
 

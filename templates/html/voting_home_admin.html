@@ -31,8 +31,8 @@
                     <br><h2> Past Questions: </h2>
                     {% for question in questions %}
                     <form action="/results" method="post">
-                       <button class = "past_questions" id="past_question" value="{{question.get('question_title')}}"> {{question.get("question_title")}} </button><br><br>
-                      <input type="hidden" id="question" name="question" value="{{question.get('question_title')}}" ></input>
+                       <button class = "past_questions" id="past_question" value="{{question.get('question_id')}}"> {{question.get("question_title")}} </button><br><br>
+                      <input type="hidden" id="question" name="question" value="{{question.get('question_id')}}" ></input>
                     </form>
                     {% endfor %}
             </div>
