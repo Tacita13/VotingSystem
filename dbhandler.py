@@ -59,7 +59,6 @@ class DBHandler:
                  (user.get('user_id'), user.get('username'),user.get('name'),
                   user.get('last_name'),user.get('user_type'), user.get('password'),
                   user.get('email'), user.get('student_number'), 'CURRENT_DATE()')
-        print query
         return self.executeSetQuery(query)
 
     def setCode(self,confirmation):
@@ -246,11 +245,9 @@ def get_user_type(username, user=userDB , password=passwordDB, host=hostDB, data
 
 
 def set_user(user_query, user=userDB , password=passwordDB, host=hostDB, database=databaseDB, port=portDB):
-    print user
     DB = DBHandler(user=user, password=password, host=host, database=database, port=port)
     DB.connect()
     # Return True if successful or False otherwise.
-    print user_query
     output = DB.setUser(user_query)
     DB.disconnect_set()
     return output
