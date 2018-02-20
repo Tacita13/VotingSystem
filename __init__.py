@@ -7,7 +7,6 @@ from login import login, loginPage, logout
 from register import register
 from home import home
 from home_admin import home_admin, end_vote
-from voting import voting
 from results import results
 from create_question import create_question
 from attendance import attendance, attendance_submit, attendance_delete
@@ -26,7 +25,6 @@ app.add_url_rule("/logout", "logout", logout, methods=['GET', 'POST'])
 app.add_url_rule("/home", "home", home, methods=['GET', 'POST'])
 app.add_url_rule("/home_admin", "home_admin", home_admin, methods=['GET', 'POST'])
 app.add_url_rule("/register", "register", register, methods=['GET', 'POST'])
-app.add_url_rule("/voting", "voting", voting, methods=['GET', 'POST'])
 app.add_url_rule("/results", "results", results, methods=['GET', 'POST'])
 app.add_url_rule("/vote_page", "vote-page", vote_page, methods=['GET', 'POST'])
 app.add_url_rule("/create_question", "create_question", create_question, methods=['GET', 'POST'])
