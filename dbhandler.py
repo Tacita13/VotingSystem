@@ -4,12 +4,18 @@ import os
 import re
 
 PH = PasswordHelper()
-
+"""
 # Comment this part for testing
 # cred = os.environ["CLEARDB_DATABASE_URL"]
 # creds = re.split('[/:@?]+', cred)
 
 # Add Credentials for testing
+userDB = "root"
+passwordDB = "root"
+hostDB = "localhost"
+databaseDB = "upr-2fast4u-voting"
+portDB = "3306"
+"""
 userDB = "root"
 passwordDB = "root"
 hostDB = "localhost"
@@ -36,7 +42,7 @@ class DBHandler:
 
     def getUser(self,username, password=""):
         query = 'SELECT * FROM User WHERE username="%s"' % username
-        print(query)
+        #print(query)
         return self.executeGetQuery(query)
 
     def getUserType(self,username, password=""):
@@ -252,9 +258,9 @@ def set_user(user_query, user=userDB , password=passwordDB, host=hostDB, databas
     # Return True if successful or False otherwise.
     output = DB.setUser(user_query)
     DB.disconnect_set()
-    print("set_user")
-    print("user: %s" % user_query)
-    print("output %s" % output)
+    #print("set_user")
+    #print("user: %s" % user_query)
+    #print("output %s" % output)
     return output
 
 def set_confirmation(confirmation, user=userDB , password=passwordDB, host=hostDB, database=databaseDB, port=portDB):
