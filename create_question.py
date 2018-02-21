@@ -7,36 +7,43 @@ from datetime import datetime
 @login_required
 def create_question():
     type = get_user_type(current_user.email)
+    #if #1
     if type["user_type"] == "Staff":
         pass
     else:
         return redirect('/home_admin')
+
     group_name="prueba01"
     valid1= False
     valid2= False
     valid3= False
     valid4= False
     valid5 = False
+    # if #2
     if  request.method == 'POST':
         question_creator = request.form.get("formulator")
+        # if #3
         if question_creator == "":
             text1 = "FILL"
         else:
             text1 = ""
             valid1 = True
         question_type = request.form.get("question_type")
+        # if #4
         if question_type == "":
             text2 = "FILL"
         else:
             text2 = ""
             valid2 = True
         question = request.form.get("question")
+        # if #5
         if question == "":
             text3 = "FILL"
         else:
             text3 = ""
             valid3 = True
         question_description = request.form.get("question_description")
+        # if #6
         if question_description == "":
             text4 = "FILL"
         else:
@@ -44,12 +51,14 @@ def create_question():
             valid4 = True
 
         question_author = request.form.get("question_author")
+
+        # if #7
         if question_author == "":
             text5 = "FILL"
         else:
             text5 = ""
             valid5 = True
-
+        # if #8
         if valid1 and valid2 and valid3 and valid4 and valid5:
             id = get_question_idx()
 

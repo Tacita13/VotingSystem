@@ -6,14 +6,14 @@ import re
 PH = PasswordHelper()
 
 # Comment this part for testing
-cred = os.environ["CLEARDB_DATABASE_URL"]
-creds = re.split('[/:@?]+', cred)
+# cred = os.environ["CLEARDB_DATABASE_URL"]
+# creds = re.split('[/:@?]+', cred)
 
 # Add Credentials for testing
-userDB = creds[1][:14]
-passwordDB = creds[2]
-hostDB = creds[3]
-databaseDB = creds[4][:22]
+userDB = "root"
+passwordDB = "root"
+hostDB = "localhost"
+databaseDB = "upr-2fast4u-voting"
 portDB = "3306"
 
 class DBHandler:
