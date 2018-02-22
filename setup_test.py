@@ -1,10 +1,5 @@
 from passwordhelper import PasswordHelper
-from register import validateRegister
-from login import validateLogin
-from dbhandler import DBHandler, set_user, set_groupPermission, set_question, set_result, delete_Permission
-from random import randint
-
-import hashlib
+from dbhandler import set_user, set_groupPermission, set_question, set_result, delete_Permission
 
 PH = PasswordHelper()
 passw =[ "1test01", "2test01", "3test01", "4test01", "5test01"]
