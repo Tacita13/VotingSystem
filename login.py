@@ -43,18 +43,18 @@ def login():
 
 
 def validateLogin(username, password):
-    print("Identifier: Level1_Item01")
-    print("Type: Unit Test (Black Box)")
-    print("Input: username: %s, password: %s " % (username, password))
+    #print("Identifier: Level1_Item01")
+    #print("Type: Unit Test (Black Box)")
+    #print("Input: username: %s, password: %s " % (username, password))
     users = get_user(username)
     answer = False
     if users:
         user = users.pop()
-        print("user: %s" % user)
-        print("pass: %s" % password)
+        #print("user: %s" % user)
+        #print("pass: %s" % password)
         if user and PH.validate_password(password, user['password']):
             answer = True
-    print("Output: %s")
+    #print("Output: %s")
     return answer
 
 if __name__ == '__main__':
