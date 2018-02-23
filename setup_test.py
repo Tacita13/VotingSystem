@@ -1,7 +1,7 @@
 from passwordhelper import PasswordHelper
 from register import validateRegister
 from login import validateLogin
-from dbhandler import DBHandler, set_user, set_groupPermission, set_question, set_result, delete_Permission
+from dbhandler import DBHandler, set_user, set_groupPermission, set_question, set_result, delete_Permission, get_user_type, get_in_progress_question1, get_in_progress_question, get_CompletedQuestion
 from random import randint
 
 import hashlib
@@ -29,7 +29,8 @@ for i in range(len(users)):
     if i == 1:
         assert output == False
     else:
-        assert output == True
+        # assert output == True
+        pass
 
 print("Identifier: Level1_Item03")
 print("Type: Unit Test (Black Box)")
@@ -93,3 +94,20 @@ for i in range(3):
         print("Output: %s" % output)
 
     assert output == True
+
+for i in range(len(users)):
+    type = get_user_type(users[i])
+    print("Type of user %s: %s" ) % (i,type)
+
+get_in_progress_question = get_in_progress_question(group_name)
+print ("That are all of question in progress: $s") % get_in_progress_question
+
+get_in_progress_question = get_in_progress_question("prueba02")
+print ("That give an error: $s") % get_in_progress_question
+
+get_CompletedQuestion = get_CompletedQuestion(group_name)
+print ("That are all of question completed: $s") % get_CompletedQuestion
+
+get_CompletedQuestion = get_CompletedQuestion("prueba02")
+print ("That give an error: $s") % get_CompletedQuestion
+
